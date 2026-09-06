@@ -1,89 +1,970 @@
-<title>Zaika Junction — Pizza, Burger, Chow Mein, Momos</title> <style> :root{ --bg:#1B1714; --bg-card:#241E19; --bg-card-2:#2C241E; --line:#3A2F27; --cream:#F3EDE4; --cream-dim:#C9BFB2; --chili:#B3301F; --chili-dark:#7E2013; --turmeric:#D9A404; --leaf:#4C8A3D; } *{box-sizing:border-box; margin:0; padding:0;} body{ background:var(--bg); color:var(--cream); font-family:'Work Sans', sans-serif; line-height:1.6; } h1,h2,h3,.display{ font-family:'Bebas Neue', sans-serif; letter-spacing:0.03em; font-weight:400; line-height:1.05; } a{color:inherit; text-decoration:none;} img,svg{display:block;} button{font-family:inherit; cursor:pointer; border:none;}
-/* ---------- Header ---------- */ header{ position:sticky; top:0; z-index:40; background:rgba(27,23,20,0.96); border-bottom:1px solid var(--line); backdrop-filter:blur(6px); } .nav-wrap{ max-width:1100px; margin:0 auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; } .logo{display:flex; align-items:center; gap:10px;} .logo-mark{width:34px; height:34px; flex-shrink:0;} .logo-text{font-size:26px; color:var(--turmeric);} nav.links{display:flex; gap:26px; font-size:15px; color:var(--cream-dim);} nav.links a:hover{color:var(--cream);} .nav-actions{display:flex; align-items:center; gap:14px;} .icon-btn{ background:transparent; color:var(--cream); position:relative; display:flex; align-items:center; gap:6px; font-size:14px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; } .icon-btn:hover{border-color:var(--turmeric); color:var(--turmeric);} .badge{ position:absolute; top:-7px; right:-7px; background:var(--chili); color:#fff; font-size:11px; min-width:18px; height:18px; border-radius:9px; display:flex; align-items:center; justify-content:center; padding:0 4px; }
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* ---------- Hero ---------- */ .hero{ max-width:1100px; margin:0 auto; padding:64px 20px 48px; display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center; } .hero h1{font-size:64px; color:var(--cream);} .hero h1 span{color:var(--chili);} .hero p{color:var(--cream-dim); font-size:17px; max-width:440px; margin-top:14px;} .hero-cta{display:flex; gap:14px; margin-top:26px;} .btn-primary{ background:var(--chili); color:#fff; padding:13px 26px; border-radius:6px; font-size:15px; font-weight:600; } .btn-primary:hover{background:var(--chili-dark);} .btn-ghost{ background:transparent; color:var(--cream); padding:13px 22px; border-radius:6px; border:1px solid var(--line); font-size:15px; } .btn-ghost:hover{border-color:var(--cream);} .hero-visual{display:flex; justify-content:center;}
+<title>Zaika Junction — Pizza, Burger, Chow Mein, Momos</title>
 
-.strip{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0; margin-top:10px; } .strip-inner{ max-width:1100px; margin:0 auto; padding:0 20px; display:flex; gap:40px; overflow-x:auto; font-size:13px; color:var(--cream-dim); } .strip-inner span{white-space:nowrap;} .strip-inner b{color:var(--turmeric); font-weight:600;}
+<style>
+:root{
+  --bg:#17120f;
+  --card:#241b16;
+  --card2:#30231c;
+  --line:#46352b;
+  --cream:#fff7ed;
+  --muted:#cbbcaf;
+  --red:#d83b24;
+  --red-dark:#a92717;
+  --yellow:#f0b323;
+  --green:#55a63f;
+}
 
-/* ---------- Menu ---------- */ .menu-section{max-width:1100px; margin:0 auto; padding:56px 20px;} .section-head{margin-bottom:28px;} .section-head h2{font-size:42px; color:var(--cream);} .cat-nav{ display:flex; gap:10px; margin:28px 0 34px; flex-wrap:wrap; } .cat-nav button{ background:var(--bg-card); color:var(--cream-dim); padding:9px 18px; border-radius:20px; font-size:14px; border:1px solid var(--line); } .cat-nav button.active{background:var(--chili); color:#fff; border-color:var(--chili);}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-.cat-block{margin-bottom:44px;} .cat-title{ display:flex; align-items:center; gap:12px; margin-bottom:6px; } .cat-title h3{font-size:30px; color:var(--turmeric);} .cat-sub{color:var(--cream-dim); font-size:13px; margin-bottom:18px;}
+html{
+  scroll-behavior:smooth;
+}
 
-.item-row{ display:flex; justify-content:space-between; gap:20px; padding:18px 0; border-bottom:1px solid var(--line); } .item-left{display:flex; gap:12px; flex:1;} .veg-mark{ width:16px; height:16px; border:1.5px solid var(--leaf); border-radius:3px; display:flex; align-items:center; justify-content:center; margin-top:4px; flex-shrink:0; } .veg-mark.non::before{background:var(--chili);} .veg-mark::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--leaf);} .veg-mark.non{border-color:var(--chili);} .item-name{font-size:17px; font-weight:600; color:var(--cream);} .item-desc{color:var(--cream-dim); font-size:13.5px; margin-top:4px; max-width:420px;} .item-right{text-align:right; flex-shrink:0; min-width:150px;} .price{font-size:16px; color:var(--cream); font-weight:600;}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:Arial, sans-serif;
+  line-height:1.6;
+}
 
-.size-row{display:flex; gap:8px; margin:10px 0; justify-content:flex-end; flex-wrap:wrap;} .size-opt{ background:var(--bg-card-2); color:var(--cream-dim); border:1px solid var(--line); padding:6px 10px; border-radius:5px; font-size:12px; } .size-opt.sel{background:var(--turmeric); color:#241a02; border-color:var(--turmeric); font-weight:600;}
+button{
+  cursor:pointer;
+  font-family:inherit;
+}
 
-.add-btn{ background:transparent; border:1.5px solid var(--leaf); color:var(--leaf); padding:7px 20px; border-radius:6px; font-size:13px; font-weight:600; margin-top:6px; } .add-btn:hover{background:var(--leaf); color:#0e1a0a;}
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(23,18,15,.97);
+  border-bottom:1px solid var(--line);
+}
 
-/* ---------- Cart drawer ---------- */ .overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:60; opacity:0; pointer-events:none; transition:opacity .2s; } .overlay.show{opacity:1; pointer-events:auto;} .drawer{ position:fixed; top:0; right:0; height:100%; width:380px; max-width:92vw; background:var(--bg-card); z-index:70; transform:translateX(100%); transition:transform .25s ease; display:flex; flex-direction:column; } .drawer.show{transform:translateX(0);} .drawer-head{ padding:20px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; } .drawer-head h3{font-size:24px; color:var(--turmeric);} .close-x{background:transparent; color:var(--cream-dim); font-size:22px; line-height:1;} .drawer-body{flex:1; overflow-y:auto; padding:16px 20px;} .cart-row{ display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); gap:10px; } .cart-row .cname{font-size:14.5px; font-weight:600;} .cart-row .csize{color:var(--cream-dim); font-size:12px;} .qty-ctrl{display:flex; align-items:center; gap:10px;} .qty-ctrl button{ width:24px; height:24px; border-radius:4px; background:var(--bg-card-2); color:var(--cream); border:1px solid var(--line); font-size:14px; } .empty-cart{color:var(--cream-dim); text-align:center; padding:60px 20px; font-size:14px;} .drawer-foot{padding:18px 20px; border-top:1px solid var(--line);} .bill-row{display:flex; justify-content:space-between; font-size:13.5px; color:var(--cream-dim); margin-bottom:6px;} .bill-row.total{color:var(--cream); font-size:17px; font-weight:700; margin-top:10px;} .checkout-btn{ width:100%; background:var(--chili); color:#fff; padding:14px; border-radius:6px; font-size:15px; font-weight:700; margin-top:14px; } .checkout-btn:disabled{background:var(--bg-card-2); color:var(--cream-dim); cursor:not-allowed;}
+.nav{
+  max-width:1100px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
 
-/* ---------- Modals ---------- */ .modal{ position:fixed; inset:0; z-index:80; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); opacity:0; pointer-events:none; transition:opacity .2s; padding:20px; } .modal.show{opacity:1; pointer-events:auto;} .modal-box{ background:var(--bg-card); border:1px solid var(--line); border-radius:10px; width:380px; max-width:100%; padding:26px; } .modal-box h3{font-size:26px; color:var(--turmeric); margin-bottom:16px;} .field{margin-bottom:14px;} .field label{display:block; font-size:12.5px; color:var(--cream-dim); margin-bottom:6px;} .field input{ width:100%; background:var(--bg); border:1px solid var(--line); color:var(--cream); padding:11px 12px; border-radius:6px; font-size:14px; font-family:inherit; } .field input:focus{outline:none; border-color:var(--turmeric);} .error-text{color:var(--chili); font-size:12px; margin-top:6px; display:none;} .pay-methods{display:flex; gap:10px; margin:16px 0;} .pay-opt{ flex:1; text-align:center; padding:12px 6px; border:1px solid var(--line); border-radius:6px; font-size:13px; color:var(--cream-dim); } .pay-opt.sel{border-color:var(--turmeric); color:var(--turmeric); background:rgba(217,164,4,0.08);} .modal-cancel{ width:100%; background:transparent; color:var(--cream-dim); padding:10px; margin-top:8px; font-size:13px; } .success-icon{ width:56px; height:56px; border-radius:50%; background:var(--leaf); margin:0 auto 16px; display:flex; align-items:center; justify-content:center; } .order-id{color:var(--turmeric); font-weight:700;}
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:var(--yellow);
+  white-space:nowrap;
+}
 
-footer{border-top:1px solid var(--line); padding:30px 20px; text-align:center; color:var(--cream-dim); font-size:13px;}
+.links{
+  display:flex;
+  gap:22px;
+}
 
-@media(max-width:760px){ .hero{grid-template-columns:1fr; padding-top:36px;} .hero h1{font-size:44px;} nav.links{display:none;} .hero-visual{order:-1;} } </style>
+.links a{
+  color:var(--muted);
+  text-decoration:none;
+}
 
-Zaika Junction
-मेन्यू पिज़्ज़ा बर्गर चाउमीन मोमोज़
-लॉगिन कार्ट0
-पिज़्ज़ा से पेरी-पेरी
-मोमोज़ तक — सब यहीं।
-गरम-गरम, ताज़ा बना और घर बैठे मंगवाइए। पिज़्ज़ा, बर्गर, चाउमीन और मोमोज़ — 30 मिनट में आपके दरवाज़े पर।
+.links a:hover{
+  color:white;
+}
 
-मेन्यू देखें पिज़्ज़ा ऑफर
-30 मिनट डिलीवरी 100% ताज़ा रोज़ बना हुआ वेज / नॉन-वेज दोनों उपलब्ध कैश या ऑनलाइन पेमेंट
-हमारा मेन्यू
-Zaika Junction · डेमो वेबसाइट, असली पेमेंट प्रोसेस नहीं करता
-आपका कार्ट
-×
-सबटोटल₹0
-डिलीवरी शुल्क₹0
-GST (5%)₹0
-कुल₹0
-पेमेंट करें
-लॉगिन करें
-नाम
-मोबाइल नंबर
-सही नाम और 10 अंकों का नंबर डालें
-लॉगिन करें बंद करें
-पेमेंट
-कुल राशि₹0
-UPI
-कार्ड
-कैश ऑन डिलीवरी
-ज़रूरी जानकारी भरें
-₹0 पे करें बंद करें
-ऑर्डर कन्फर्म!
-आपका ऑर्डर रिसीव हो गया है। 30-35 मिनट में डिलीवर होगा।
+.actions{
+  display:flex;
+  gap:8px;
+}
 
-ठीक है
+.action-btn{
+  position:relative;
+  background:transparent;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:9px 12px;
+}
+
+.action-btn:hover{
+  border-color:var(--yellow);
+  color:var(--yellow);
+}
+
+.badge{
+  position:absolute;
+  top:-8px;
+  right:-8px;
+  background:var(--red);
+  color:white;
+  min-width:19px;
+  height:19px;
+  border-radius:50%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+}
+
+.hero{
+  max-width:1100px;
+  margin:auto;
+  padding:80px 20px 65px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:40px;
+  align-items:center;
+}
+
+.hero h1{
+  font-size:58px;
+  line-height:1.05;
+  margin-bottom:18px;
+}
+
+.hero h1 span{
+  color:var(--red);
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:520px;
+  font-size:17px;
+}
+
+.buttons{
+  margin-top:28px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.primary,
+.secondary{
+  padding:13px 22px;
+  border-radius:7px;
+  font-size:15px;
+  font-weight:bold;
+}
+
+.primary{
+  background:var(--red);
+  color:white;
+  border:1px solid var(--red);
+}
+
+.primary:hover{
+  background:var(--red-dark);
+}
+
+.secondary{
+  background:transparent;
+  color:white;
+  border:1px solid var(--line);
+}
+
+.secondary:hover{
+  border-color:white;
+}
+
+.food-art{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:45px 25px;
+  text-align:center;
+  font-size:90px;
+  box-shadow:0 15px 50px rgba(0,0,0,.3);
+}
+
+.features{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.feature-inner{
+  max-width:1100px;
+  margin:auto;
+  padding:17px 20px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.feature-inner b{
+  color:var(--yellow);
+}
+
+.menu{
+  max-width:1100px;
+  margin:auto;
+  padding:65px 20px;
+}
+
+.heading{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.heading h2{
+  font-size:42px;
+  margin-bottom:8px;
+}
+
+.heading p{
+  color:var(--muted);
+}
+
+.categories{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:40px;
+}
+
+.categories button{
+  background:var(--card);
+  color:var(--muted);
+  border:1px solid var(--line);
+  padding:9px 18px;
+  border-radius:20px;
+}
+
+.categories button.active,
+.categories button:hover{
+  background:var(--red);
+  color:white;
+  border-color:var(--red);
+}
+
+.category{
+  margin-bottom:45px;
+}
+
+.category h3{
+  color:var(--yellow);
+  font-size:30px;
+  margin-bottom:4px;
+}
+
+.category-sub{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.item-info{
+  flex:1;
+}
+
+.item-name{
+  font-size:18px;
+  font-weight:bold;
+}
+
+.item-desc{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:4px;
+}
+
+.veg{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  border:2px solid var(--green);
+  border-radius:3px;
+  margin-right:8px;
+}
+
+.nonveg{
+  border-color:var(--red);
+}
+
+.item-right{
+  min-width:180px;
+  text-align:right;
+}
+
+.price{
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.size-buttons{
+  display:flex;
+  gap:6px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+
+.size{
+  background:var(--card2);
+  color:var(--muted);
+  border:1px solid var(--line);
+  padding:5px 9px;
+  border-radius:5px;
+  font-size:12px;
+}
+
+.size.selected{
+  background:var(--yellow);
+  color:#241900;
+}
+
+.add{
+  background:transparent;
+  color:var(--green);
+  border:1px solid var(--green);
+  padding:7px 16px;
+  border-radius:6px;
+  font-weight:bold;
+}
+
+.add:hover{
+  background:var(--green);
+  color:#101b0d;
+}
+
+footer{
+  border-top:1px solid var(--line);
+  text-align:center;
+  color:var(--muted);
+  padding:30px 20px;
+}
+
+/* Overlay */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:150;
+  display:none;
+}
+
+.overlay.show{
+  display:block;
+}
+
+/* Cart */
+.cart{
+  position:fixed;
+  top:0;
+  right:0;
+  width:390px;
+  max-width:92vw;
+  height:100%;
+  background:var(--card);
+  z-index:200;
+  transform:translateX(100%);
+  transition:.25s;
+  display:flex;
+  flex-direction:column;
+}
+
+.cart.show{
+  transform:translateX(0);
+}
+
+.cart-head{
+  padding:20px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cart-head h2{
+  color:var(--yellow);
+}
+
+.close{
+  background:transparent;
+  color:white;
+  border:0;
+  font-size:25px;
+}
+
+.cart-body{
+  flex:1;
+  overflow:auto;
+  padding:18px 20px;
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:50px 10px;
+}
+
+.cart-item{
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.cart-name{
+  font-weight:bold;
+}
+
+.cart-size{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty button{
+  width:25px;
+  height:25px;
+  background:var(--card2);
+  color:white;
+  border:1px solid var(--line);
+  border-radius:4px;
+}
+
+.cart-foot{
+  display:none;
+  padding:18px 20px;
+  border-top:1px solid var(--line);
+}
+
+.bill{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:14px;
+  margin:5px 0;
+}
+
+.total{
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.checkout{
+  width:100%;
+  margin-top:15px;
+  padding:14px;
+  border:0;
+  border-radius:7px;
+  background:var(--red);
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+}
+
+/* Modal */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:400px;
+  max-width:100%;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:25px;
+}
+
+.modal-box h2{
+  color:var(--yellow);
+  margin-bottom:18px;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+.field input{
+  width:100%;
+  background:var(--bg);
+  color:white;
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:11px;
+  font-size:14px;
+}
+
+.error{
+  color:#ff6b5b;
+  font-size:13px;
+  display:none;
+  margin-bottom:10px;
+}
+
+.modal-buttons{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.modal-buttons button{
+  flex:1;
+  padding:11px;
+  border-radius:6px;
+}
+
+.cancel{
+  background:transparent;
+  color:white;
+  border:1px solid var(--line);
+}
+
+.pay-methods{
+  display:flex;
+  gap:8px;
+  margin:15px 0;
+}
+
+.pay-method{
+  flex:1;
+  padding:10px 5px;
+  background:var(--card2);
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:6px;
+}
+
+.pay-method.active{
+  color:var(--yellow);
+  border-color:var(--yellow);
+}
+
+.success{
+  text-align:center;
+}
+
+.success-icon{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+@media(max-width:760px){
+
+  .links{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:45px;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .food-art{
+    order:-1;
+    font-size:65px;
+  }
+
+  .item{
+    flex-direction:column;
+  }
+
+  .item-right{
+    text-align:left;
+    min-width:0;
+  }
+
+  .size-buttons{
+    justify-content:flex-start;
+  }
+
+  .feature-inner{
+    justify-content:center;
+  }
+
+  .logo{
+    font-size:20px;
+  }
+}
 </style>
-<script> const MENU = { pizza: { label: "पिज़्ज़ा", id:"pizza", sub: "साइज़ चुनें — Regular / Medium / Large", items: [ {name:"क्लासिक मार्गेरिटा", desc:"मोज़ेरेला चीज़ और टमाटर सॉस के साथ", veg:true, sizes:[["Regular",129],["Medium",319],["Large",559]]}, {name:"फार्म फ्रेश वेजी", desc:"शिमला मिर्च, प्याज़, टमाटर, ओलिव्स", veg:true, sizes:[["Regular",149],["Medium",359],["Large",599]]}, {name:"पनीर टिक्का ब्लास्ट", desc:"तंदूरी पनीर, प्याज़ और शिमला मिर्च", veg:true, sizes:[["Regular",169],["Medium",399],["Large",649]]}, {name:"चिकन टिक्का फिएस्टा", desc:"तंदूरी चिकन टिक्का और प्याज़", veg:false, sizes:[["Regular",199],["Medium",449],["Large",719]]}, {name:"पेपरोनी ओवरलोड", desc:"डबल पेपरोनी, एक्स्ट्रा चीज़", veg:false, sizes:[["Regular",219],["Medium",479],["Large",749]]}, ] }, burger: { label:"बर्गर", id:"burger", sub:"स्ट्रीट-स्टाइल बर्गर, ताज़े बन के साथ", items:[ {name:"आलू टिक्की बर्गर", desc:"क्रिस्पी आलू टिक्की, मसाला मेयो", veg:true, price:79}, {name:"पनीर ज़िंगर", desc:"क्रिस्पी पनीर, पेरी-पेरी सॉस", veg:true, price:109}, {name:"क्रिस्पी चिकन बर्गर", desc:"फ्राइड चिकन पैटी, लेट्यूस", veg:false, price:99}, {name:"डबल चिकन ज़िंगर", desc:"डबल पैटी, चीज़ और स्पाइसी मेयो", veg:false, price:149}, ] }, chowmein: { label:"चाउमीन", id:"chowmein", sub:"वोक में ताज़ा बना हुआ", items:[ {name:"वेज हक्का नूडल्स", desc:"मिक्स सब्ज़ियों के साथ", veg:true, price:120}, {name:"शेज़वान वेज नूडल्स", desc:"तीखी शेज़वान सॉस में", veg:true, price:135}, {name:"चिकन चाउमीन", desc:"चिकन स्ट्रिप्स के साथ", veg:false, price:150}, {name:"शेज़वान चिकन नूडल्स", desc:"स्पाइसी शेज़वान चिकन", veg:false, price:165}, ] }, momos: { label:"मोमोज़", id:"momos", sub:"8 पीस प्लेट, स्पाइसी चटनी के साथ", items:[ {name:"स्टीम्ड वेज मोमोज़", desc:"8 पीस, तीखी लाल चटनी के साथ", veg:true, price:99}, {name:"फ्राइड वेज मोमोज़", desc:"8 पीस, कुरकुरे तले हुए", veg:true, price:109}, {name:"चिकन मोमोज़", desc:"8 पीस, स्टीम्ड", veg:false, price:129}, {name:"पेरी-पेरी चिकन मोमोज़", desc:"8 पीस, पेरी-पेरी मसाले में टॉस्ड", veg:false, price:139}, ] } }; let cart = []; // {key,name,size,price,qty} let user = null; let payMethod = "upi"; function money(n){ return "₹" + n.toLocaleString('en-IN'); } // ---------- render menu ---------- const catNav = document.getElementById('catNav'); const menuList = document.getElementById('menuList'); Object.values(MENU).forEach((cat,i)=>{ const b = document.createElement('button'); b.textContent = cat.label; b.className = i===0 ? 'active' : ''; b.onclick = ()=>{ document.getElementById(cat.id).scrollIntoView({behavior:'smooth', block:'start'}); }; catNav.appendChild(b); }); Object.values(MENU).forEach(cat=>{ const block = document.createElement('div'); block.className = 'cat-block'; block.id = cat.id; let itemsHtml = ''; cat.items.forEach((it, idx)=>{ const itemKey = cat.id + '-' + idx; if(it.sizes){ let sizeBtns = it.sizes.map((s,si)=>`${s[0]} ${money(s[1])}`).join(''); itemsHtml += `
-${it.name}
-${it.desc}
-${sizeBtns}
-कार्ट में डालें
-`; } else { itemsHtml += `
-${it.name}
-${it.desc}
-${money(it.price)}
-कार्ट में डालें
-`; } }); block.innerHTML = `
-${cat.label}
-${cat.sub}
-${itemsHtml} `; menuList.appendChild(block); }); // size selection state const sizeSelState = {}; document.querySelectorAll('.size-opt').forEach(btn=>{ btn.addEventListener('click', ()=>{ const key = btn.dataset.key; document.querySelectorAll(`.size-opt[data-key="${key}"]`).forEach(b=>b.classList.remove('sel')); btn.classList.add('sel'); sizeSelState[key] = parseInt(btn.dataset.idx); }); }); function findItem(itemKey){ const [catId, idx] = itemKey.split('-'); return MENU[catId].items[parseInt(idx)]; } document.querySelectorAll('[data-addsize]').forEach(btn=>{ btn.addEventListener('click', ()=>{ const key = btn.dataset.addsize; const it = findItem(key); const sIdx = sizeSelState[key] || 0; const [label, price] = it.sizes[sIdx]; addToCart(key + '-' + label, it.name, label, price); }); }); document.querySelectorAll('[data-addflat]').forEach(btn=>{ btn.addEventListener('click', ()=>{ const key = btn.dataset.addflat; const it = findItem(key); addToCart(key, it.name, null, it.price); }); }); function addToCart(cartKey, name, size, price){ const existing = cart.find(c=>c.key===cartKey); if(existing){ existing.qty++; } else{ cart.push({key:cartKey, name, size, price, qty:1}); } renderCart(); openCart(); } // ---------- cart drawer ---------- const overlay = document.getElementById('overlay'); const drawer = document.getElementById('drawer'); function openCart(){ overlay.classList.add('show'); drawer.classList.add('show'); } function closeCartFn(){ overlay.classList.remove('show'); drawer.classList.remove('show'); } document.getElementById('cartBtn').onclick = openCart; document.getElementById('closeCart').onclick = closeCartFn; overlay.onclick = ()=>{ closeCartFn(); closeAllModals(); }; function renderCart(){ const body = document.getElementById('cartBody'); const foot = document.getElementById('cartFoot'); const badge = document.getElementById('cartBadge'); const totalQty = cart.reduce((s,c)=>s+c.qty,0); badge.style.display = totalQty>0 ? 'flex' : 'none'; badge.textContent = totalQty; if(cart.length===0){ body.innerHTML = '
-कार्ट खाली है — मेन्यू से कुछ स्वादिष्ट चुनें
-'; foot.style.display = 'none'; return; } foot.style.display = 'block'; body.innerHTML = cart.map(c=>`
-${c.name}${c.size?' ('+c.size+')':''}
-${money(c.price)} x ${c.qty}
-− ${c.qty} +
-`).join(''); body.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>{ changeQty(b.dataset.inc, 1); }); body.querySelectorAll('[data-dec]').forEach(b=>b.onclick=()=>{ changeQty(b.dataset.dec, -1); }); const subtotal = cart.reduce((s,c)=>s+c.price*c.qty,0); const delFee = subtotal>0 ? (subtotal>500?0:40) : 0; const gst = Math.round(subtotal*0.05); const total = subtotal + delFee + gst; document.getElementById('subTotal').textContent = money(subtotal); document.getElementById('delFee').textContent = delFee===0 ? 'फ्री' : money(delFee); document.getElementById('gstAmt').textContent = money(gst); document.getElementById('grandTotal').textContent = money(total); } function changeQty(key, delta){ const c = cart.find(x=>x.key===key); if(!c) return; c.qty += delta; if(c.qty<=0) cart = cart.filter(x=>x.key!==key); renderCart(); } // ---------- login ---------- const loginModal = document.getElementById('loginModal'); document.getElementById('loginBtn').onclick = ()=>{ if(user){ alert(`आप लॉगिन हैं: ${user.name}`); return; } loginModal.classList.add('show'); }; document.getElementById('loginCancel').onclick = ()=>loginModal.classList.remove('show'); document.getElementById('loginSubmit').onclick = ()=>{ const name = document.getElementById('loginName').value.trim(); const phone = document.getElementById('loginPhone').value.trim(); const err = document.getElementById('loginError'); if(name.length<2 || !/^[0-9]{10}$/.test(phone)){ err.style.display = 'block'; return; } err.style.display = 'none'; user = {name, phone}; document.getElementById('loginBtn').textContent = name.split(' ')[0]; loginModal.classList.remove('show'); }; // ---------- checkout / payment ---------- const payModal = document.getElementById('payModal'); let pendingTotal = 0; document.getElementById('checkoutBtn').onclick = ()=>{ if(!user){ closeCartFn(); loginModal.classList.add('show'); return; } pendingTotal = parseInt(document.getElementById('grandTotal').textContent.replace(/[^0-9]/g,'')); document.getElementById('payAmount').textContent = money(pendingTotal); document.getElementById('paySubmit').textContent = money(pendingTotal) + ' पे करें'; renderPayFields(); payModal.classList.add('show'); }; document.getElementById('payCancel').onclick = ()=>payModal.classList.remove('show'); document.querySelectorAll('.pay-opt').forEach(opt=>{ opt.onclick = ()=>{ document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('sel')); opt.classList.add('sel'); payMethod = opt.dataset.m; renderPayFields(); }; }); function renderPayFields(){ const box = document.getElementById('payFields'); if(payMethod==='upi'){ box.innerHTML = `
-UPI ID
-`; } else if(payMethod==='card'){ box.innerHTML = `
-कार्ड नंबर
-Expiry
-CVV
-`; } else { box.innerHTML = `
-डिलीवरी के समय कैश से पेमेंट करें।
+</head>
 
-`; } } renderPayFields(); document.getElementById('paySubmit').onclick = ()=>{ const err = document.getElementById('payError'); err.style.display = 'none'; if(payMethod==='upi'){ const v = document.getElementById('upiId').value.trim(); if(!/^[\w.\-]+@[\w]+$/.test(v)){ err.textContent='सही UPI ID डालें (जैसे name@upi)'; err.style.display='block'; return; } } else if(payMethod==='card'){ const num = document.getElementById('cardNum').value.replace(/\s/g,''); const exp = document.getElementById('cardExp').value.trim(); const cvv = document.getElementById('cardCvv').value.trim(); if(!/^\d{16}$/.test(num) || !/^\d{2}\/\d{2}$/.test(exp) || !/^\d{3}$/.test(cvv)){ err.textContent = 'कार्ड की सही जानकारी भरें'; err.style.display='block'; return; } } // simulate processing const btn = document.getElementById('paySubmit'); const original = btn.textContent; btn.textContent = 'प्रोसेस हो रहा है...'; btn.disabled = true; setTimeout(()=>{ btn.disabled = false; btn.textContent = original; payModal.classList.remove('show'); const orderId = 'ZJ' + Math.floor(100000 + Math.random()*900000); document.getElementById('orderIdText').textContent = '#' + orderId; document.getElementById('successModal').classList.add('show'); cart = []; renderCart(); closeCartFn(); }, 1100); }; document.getElementById('successClose').onclick = ()=>{ document.getElementById('successModal').classList.remove('show'); }; function closeAllModals(){ [loginModal, payModal].forEach(m=>m.classList.remove('show')); } renderCart(); </script>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">🍽️ Zaika Junction</div>
+
+    <nav class="links">
+      <a href="#home">होम</a>
+      <a href="#menu">मेन्यू</a>
+      <a href="#pizza">पिज़्ज़ा</a>
+      <a href="#burger">बर्गर</a>
+      <a href="#momos">मोमोज़</a>
+    </nav>
+
+    <div class="actions">
+      <button class="action-btn" id="loginBtn">लॉगिन</button>
+      <button class="action-btn" id="cartBtn">
+        🛒 कार्ट
+        <span class="badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h1>पिज़्ज़ा से <span>पेरी-पेरी मोमोज़</span> तक — सब यहीं।</h1>
+
+    <p>
+      गरम-गरम, ताज़ा बना और घर बैठे मंगवाइए।
+      पिज़्ज़ा, बर्गर, चाउमीन और मोमोज़ —
+      स्वाद जो बार-बार याद आए।
+    </p>
+
+    <div class="buttons">
+      <button class="primary" onclick="document.getElementById('menu').scrollIntoView()">मेन्यू देखें</button>
+      <button class="secondary" onclick="document.getElementById('pizza').scrollIntoView()">🍕 पिज़्ज़ा ऑफर</button>
+    </div>
+  </div>
+
+  <div class="food-art">
+    🍕 🍔<br>
+    🥟 🍜
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-inner">
+    <span>🚴 <b>30 मिनट</b> डिलीवरी</span>
+    <span>🔥 <b>100% ताज़ा</b></span>
+    <span>🥬 वेज / नॉन-वेज</span>
+    <span>💳 कैश या ऑनलाइन पेमेंट</span>
+  </div>
+</section>
+
+<main class="menu" id="menu">
+
+  <div class="heading">
+    <h2>हमारा मेन्यू</h2>
+    <p>अपना पसंदीदा खाना चुनें और कार्ट में डालें।</p>
+  </div>
+
+  <div class="categories">
+    <button class="active" onclick="goTo('pizza',this)">🍕 पिज़्ज़ा</button>
+    <button onclick="goTo('burger',this)">🍔 बर्गर</button>
+    <button onclick="goTo('chowmein',this)">🍜 चाउमीन</button>
+    <button onclick="goTo('momos',this)">🥟 मोमोज़</button>
+  </div>
+
+  <section class="category" id="pizza">
+    <h3>🍕 पिज़्ज़ा</h3>
+    <p class="category-sub">साइज़ चुनें — Regular / Medium / Large</p>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>क्लासिक मार्गेरिटा</div>
+        <div class="item-desc">मोज़ेरेला चीज़ और टमाटर सॉस के साथ</div>
+      </div>
+      <div class="item-right">
+        <div class="size-buttons">
+          <button class="size selected" onclick="selectSize(this,129)">Regular ₹129</button>
+          <button class="size" onclick="selectSize(this,319)">Medium ₹319</button>
+          <button class="size" onclick="selectSize(this,559)">Large ₹559</button>
+        </div>
+        <button class="add" onclick="addSelected(this,'क्लासिक मार्गेरिटा')">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>फार्म फ्रेश वेजी</div>
+        <div class="item-desc">शिमला मिर्च, प्याज़, टमाटर और ओलिव्स</div>
+      </div>
+      <div class="item-right">
+        <div class="size-buttons">
+          <button class="size selected" onclick="selectSize(this,149)">Regular ₹149</button>
+          <button class="size" onclick="selectSize(this,359)">Medium ₹359</button>
+          <button class="size" onclick="selectSize(this,599)">Large ₹599</button>
+        </div>
+        <button class="add" onclick="addSelected(this,'फार्म फ्रेश वेजी')">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>पनीर टिक्का ब्लास्ट</div>
+        <div class="item-desc">तंदूरी पनीर, प्याज़ और शिमला मिर्च</div>
+      </div>
+      <div class="item-right">
+        <div class="size-buttons">
+          <button class="size selected" onclick="selectSize(this,169)">Regular ₹169</button>
+          <button class="size" onclick="selectSize(this,399)">Medium ₹399</button>
+          <button class="size" onclick="selectSize(this,649)">Large ₹649</button>
+        </div>
+        <button class="add" onclick="addSelected(this,'पनीर टिक्का ब्लास्ट')">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>चिकन टिक्का फिएस्टा</div>
+        <div class="item-desc">तंदूरी चिकन टिक्का और प्याज़</div>
+      </div>
+      <div class="item-right">
+        <div class="size-buttons">
+          <button class="size selected" onclick="selectSize(this,199)">Regular ₹199</button>
+          <button class="size" onclick="selectSize(this,449)">Medium ₹449</button>
+          <button class="size" onclick="selectSize(this,719)">Large ₹719</button>
+        </div>
+        <button class="add" onclick="addSelected(this,'चिकन टिक्का फिएस्टा')">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>पेपरोनी ओवरलोड</div>
+        <div class="item-desc">डबल पेपरोनी और एक्स्ट्रा चीज़</div>
+      </div>
+      <div class="item-right">
+        <div class="size-buttons">
+          <button class="size selected" onclick="selectSize(this,219)">Regular ₹219</button>
+          <button class="size" onclick="selectSize(this,479)">Medium ₹479</button>
+          <button class="size" onclick="selectSize(this,749)">Large ₹749</button>
+        </div>
+        <button class="add" onclick="addSelected(this,'पेपरोनी ओवरलोड')">कार्ट में डालें</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="burger">
+    <h3>🍔 बर्गर</h3>
+    <p class="category-sub">स्ट्रीट-स्टाइल बर्गर, ताज़े बन के साथ</p>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>आलू टिक्की बर्गर</div>
+        <div class="item-desc">क्रिस्पी आलू टिक्की, मसाला मेयो</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹79</div>
+        <button class="add" onclick="addToCart('आलू टिक्की बर्गर',79)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>पनीर ज़िंगर</div>
+        <div class="item-desc">क्रिस्पी पनीर और पेरी-पेरी सॉस</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹109</div>
+        <button class="add" onclick="addToCart('पनीर ज़िंगर',109)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>क्रिस्पी चिकन बर्गर</div>
+        <div class="item-desc">फ्राइड चिकन पैटी और लेट्यूस</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹99</div>
+        <button class="add" onclick="addToCart('क्रिस्पी चिकन बर्गर',99)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>डबल चिकन ज़िंगर</div>
+        <div class="item-desc">डबल पैटी, चीज़ और स्पाइसी मेयो</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹149</div>
+        <button class="add" onclick="addToCart('डबल चिकन ज़िंगर',149)">कार्ट में डालें</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="chowmein">
+    <h3>🍜 चाउमीन</h3>
+    <p class="category-sub">वोक में ताज़ा बना हुआ</p>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>वेज हक्का नूडल्स</div>
+        <div class="item-desc">मिक्स सब्ज़ियों के साथ</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹120</div>
+        <button class="add" onclick="addToCart('वेज हक्का नूडल्स',120)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>शेज़वान वेज नूडल्स</div>
+        <div class="item-desc">तीखी शेज़वान सॉस में</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹135</div>
+        <button class="add" onclick="addToCart('शेज़वान वेज नूडल्स',135)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>चिकन चाउमीन</div>
+        <div class="item-desc">चिकन स्ट्रिप्स के साथ</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹150</div>
+        <button class="add" onclick="addToCart('चिकन चाउमीन',150)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>शेज़वान चिकन नूडल्स</div>
+        <div class="item-desc">स्पाइसी शेज़वान चिकन</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹165</div>
+        <button class="add" onclick="addToCart('शेज़वान चिकन नूडल्स',165)">कार्ट में डालें</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="momos">
+    <h3>🥟 मोमोज़</h3>
+    <p class="category-sub">8 पीस प्लेट, स्पाइसी चटनी के साथ</p>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>स्टीम्ड वेज मोमोज़</div>
+        <div class="item-desc">8 पीस, तीखी लाल चटनी के साथ</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹99</div>
+        <button class="add" onclick="addToCart('स्टीम्ड वेज मोमोज़',99)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg"></span>फ्राइड वेज मोमोज़</div>
+        <div class="item-desc">8 पीस, कुरकुरे तले हुए</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹109</div>
+        <button class="add" onclick="addToCart('फ्राइड वेज मोमोज़',109)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>चिकन मोमोज़</div>
+        <div class="item-desc">8 पीस, स्टीम्ड</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹129</div>
+        <button class="add" onclick="addToCart('चिकन मोमोज़',129)">कार्ट में डालें</button>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <div class="item-name"><span class="veg nonveg"></span>पेरी-पेरी चिकन मोमोज़</div>
+        <div class="item-desc">8 पीस, पेरी-पेरी मसाले में टॉस्ड</div>
+      </div>
+      <div class="item-right">
+        <div class="price">₹139</div>
+        <button class="add" onclick="addToCart('पेरी-पेरी चिकन मोमोज़',139)">कार्ट में डालें</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Zaika Junction · डेमो वेबसाइट · असली पेमेंट प्रोसेस नहीं करता
+</footer>
+
+<!-- CART -->
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="cart" id="cart">
+  <div class="cart-head">
+    <h2>आपका कार्ट</h2>
+    <button class="close" id="closeCart">×</button>
+  </div>
+
+  <div class="cart-body" id="cartBody">
+    <div class="empty">कार्ट खाली है — मेन्यू से कुछ स्वादिष्ट चुनें 😋</div>
+  </div>
+
+  <div class="cart-foot" id="cartFoot">
+    <div class="bill">
+      <span>सबटोटल</span>
+      <span id="subtotal">₹0</span>
+    </div>
+
+    <div class="bill">
+      <span>डिलीवरी शुल्क</span>
+      <span id="delivery">₹0</span>
+    </div>
+
+    <div class="bill">
+      <span>GST (5%)</span>
+      <span id="gst">₹0</span>
+    </div>
+
+    <div class="bill total">
+      <span>कुल</span>
+      <span id="total">₹0</span>
