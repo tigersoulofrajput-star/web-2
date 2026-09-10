@@ -1,970 +1,1083 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Zaika Junction — Pizza, Burger, Chow Mein, Momos</title>
-
-<style>
-:root{
-  --bg:#17120f;
-  --card:#241b16;
-  --card2:#30231c;
-  --line:#46352b;
-  --cream:#fff7ed;
-  --muted:#cbbcaf;
-  --red:#d83b24;
-  --red-dark:#a92717;
-  --yellow:#f0b323;
-  --green:#55a63f;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:var(--bg);
-  color:var(--cream);
-  font-family:Arial, sans-serif;
-  line-height:1.6;
-}
-
-button{
-  cursor:pointer;
-  font-family:inherit;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(23,18,15,.97);
-  border-bottom:1px solid var(--line);
-}
-
-.nav{
-  max-width:1100px;
-  margin:auto;
-  padding:14px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-}
-
-.logo{
-  font-size:25px;
-  font-weight:bold;
-  color:var(--yellow);
-  white-space:nowrap;
-}
-
-.links{
-  display:flex;
-  gap:22px;
-}
-
-.links a{
-  color:var(--muted);
-  text-decoration:none;
-}
-
-.links a:hover{
-  color:white;
-}
-
-.actions{
-  display:flex;
-  gap:8px;
-}
-
-.action-btn{
-  position:relative;
-  background:transparent;
-  color:white;
-  border:1px solid var(--line);
-  border-radius:7px;
-  padding:9px 12px;
-}
-
-.action-btn:hover{
-  border-color:var(--yellow);
-  color:var(--yellow);
-}
-
-.badge{
-  position:absolute;
-  top:-8px;
-  right:-8px;
-  background:var(--red);
-  color:white;
-  min-width:19px;
-  height:19px;
-  border-radius:50%;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-}
-
-.hero{
-  max-width:1100px;
-  margin:auto;
-  padding:80px 20px 65px;
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:40px;
-  align-items:center;
-}
-
-.hero h1{
-  font-size:58px;
-  line-height:1.05;
-  margin-bottom:18px;
-}
-
-.hero h1 span{
-  color:var(--red);
-}
-
-.hero p{
-  color:var(--muted);
-  max-width:520px;
-  font-size:17px;
-}
-
-.buttons{
-  margin-top:28px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.primary,
-.secondary{
-  padding:13px 22px;
-  border-radius:7px;
-  font-size:15px;
-  font-weight:bold;
-}
-
-.primary{
-  background:var(--red);
-  color:white;
-  border:1px solid var(--red);
-}
-
-.primary:hover{
-  background:var(--red-dark);
-}
-
-.secondary{
-  background:transparent;
-  color:white;
-  border:1px solid var(--line);
-}
-
-.secondary:hover{
-  border-color:white;
-}
-
-.food-art{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:25px;
-  padding:45px 25px;
-  text-align:center;
-  font-size:90px;
-  box-shadow:0 15px 50px rgba(0,0,0,.3);
-}
-
-.features{
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-}
-
-.feature-inner{
-  max-width:1100px;
-  margin:auto;
-  padding:17px 20px;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-  color:var(--muted);
-  font-size:14px;
-}
-
-.feature-inner b{
-  color:var(--yellow);
-}
-
-.menu{
-  max-width:1100px;
-  margin:auto;
-  padding:65px 20px;
-}
-
-.heading{
-  text-align:center;
-  margin-bottom:35px;
-}
-
-.heading h2{
-  font-size:42px;
-  margin-bottom:8px;
-}
-
-.heading p{
-  color:var(--muted);
-}
-
-.categories{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-bottom:40px;
-}
-
-.categories button{
-  background:var(--card);
-  color:var(--muted);
-  border:1px solid var(--line);
-  padding:9px 18px;
-  border-radius:20px;
-}
-
-.categories button.active,
-.categories button:hover{
-  background:var(--red);
-  color:white;
-  border-color:var(--red);
-}
-
-.category{
-  margin-bottom:45px;
-}
-
-.category h3{
-  color:var(--yellow);
-  font-size:30px;
-  margin-bottom:4px;
-}
-
-.category-sub{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:15px;
-}
-
-.item{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  padding:18px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.item-info{
-  flex:1;
-}
-
-.item-name{
-  font-size:18px;
-  font-weight:bold;
-}
-
-.item-desc{
-  color:var(--muted);
-  font-size:14px;
-  margin-top:4px;
-}
-
-.veg{
-  display:inline-block;
-  width:14px;
-  height:14px;
-  border:2px solid var(--green);
-  border-radius:3px;
-  margin-right:8px;
-}
-
-.nonveg{
-  border-color:var(--red);
-}
-
-.item-right{
-  min-width:180px;
-  text-align:right;
-}
-
-.price{
-  font-weight:bold;
-  margin-bottom:8px;
-}
-
-.size-buttons{
-  display:flex;
-  gap:6px;
-  justify-content:flex-end;
-  flex-wrap:wrap;
-  margin-bottom:8px;
-}
-
-.size{
-  background:var(--card2);
-  color:var(--muted);
-  border:1px solid var(--line);
-  padding:5px 9px;
-  border-radius:5px;
-  font-size:12px;
-}
-
-.size.selected{
-  background:var(--yellow);
-  color:#241900;
-}
-
-.add{
-  background:transparent;
-  color:var(--green);
-  border:1px solid var(--green);
-  padding:7px 16px;
-  border-radius:6px;
-  font-weight:bold;
-}
-
-.add:hover{
-  background:var(--green);
-  color:#101b0d;
-}
-
-footer{
-  border-top:1px solid var(--line);
-  text-align:center;
-  color:var(--muted);
-  padding:30px 20px;
-}
-
-/* Overlay */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:150;
-  display:none;
-}
-
-.overlay.show{
-  display:block;
-}
-
-/* Cart */
-.cart{
-  position:fixed;
-  top:0;
-  right:0;
-  width:390px;
-  max-width:92vw;
-  height:100%;
-  background:var(--card);
-  z-index:200;
-  transform:translateX(100%);
-  transition:.25s;
-  display:flex;
-  flex-direction:column;
-}
-
-.cart.show{
-  transform:translateX(0);
-}
-
-.cart-head{
-  padding:20px;
-  border-bottom:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.cart-head h2{
-  color:var(--yellow);
-}
-
-.close{
-  background:transparent;
-  color:white;
-  border:0;
-  font-size:25px;
-}
-
-.cart-body{
-  flex:1;
-  overflow:auto;
-  padding:18px 20px;
-}
-
-.empty{
-  text-align:center;
-  color:var(--muted);
-  padding:50px 10px;
-}
-
-.cart-item{
-  padding:14px 0;
-  border-bottom:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.cart-name{
-  font-weight:bold;
-}
-
-.cart-size{
-  color:var(--muted);
-  font-size:12px;
-}
-
-.qty{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.qty button{
-  width:25px;
-  height:25px;
-  background:var(--card2);
-  color:white;
-  border:1px solid var(--line);
-  border-radius:4px;
-}
-
-.cart-foot{
-  display:none;
-  padding:18px 20px;
-  border-top:1px solid var(--line);
-}
-
-.bill{
-  display:flex;
-  justify-content:space-between;
-  color:var(--muted);
-  font-size:14px;
-  margin:5px 0;
-}
-
-.total{
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  margin-top:10px;
-}
-
-.checkout{
-  width:100%;
-  margin-top:15px;
-  padding:14px;
-  border:0;
-  border-radius:7px;
-  background:var(--red);
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-}
-
-/* Modal */
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:300;
-  background:rgba(0,0,0,.7);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:400px;
-  max-width:100%;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:25px;
-}
-
-.modal-box h2{
-  color:var(--yellow);
-  margin-bottom:18px;
-}
-
-.field{
-  margin-bottom:14px;
-}
-
-.field label{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:5px;
-}
-
-.field input{
-  width:100%;
-  background:var(--bg);
-  color:white;
-  border:1px solid var(--line);
-  border-radius:6px;
-  padding:11px;
-  font-size:14px;
-}
-
-.error{
-  color:#ff6b5b;
-  font-size:13px;
-  display:none;
-  margin-bottom:10px;
-}
-
-.modal-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-}
-
-.modal-buttons button{
-  flex:1;
-  padding:11px;
-  border-radius:6px;
-}
-
-.cancel{
-  background:transparent;
-  color:white;
-  border:1px solid var(--line);
-}
-
-.pay-methods{
-  display:flex;
-  gap:8px;
-  margin:15px 0;
-}
-
-.pay-method{
-  flex:1;
-  padding:10px 5px;
-  background:var(--card2);
-  color:var(--muted);
-  border:1px solid var(--line);
-  border-radius:6px;
-}
-
-.pay-method.active{
-  color:var(--yellow);
-  border-color:var(--yellow);
-}
-
-.success{
-  text-align:center;
-}
-
-.success-icon{
-  font-size:55px;
-  margin-bottom:10px;
-}
-
-@media(max-width:760px){
-
-  .links{
-    display:none;
-  }
-
-  .hero{
-    grid-template-columns:1fr;
-    padding-top:45px;
-  }
-
-  .hero h1{
-    font-size:43px;
-  }
-
-  .food-art{
-    order:-1;
-    font-size:65px;
-  }
-
-  .item{
-    flex-direction:column;
-  }
-
-  .item-right{
-    text-align:left;
-    min-width:0;
-  }
-
-  .size-buttons{
-    justify-content:flex-start;
-  }
-
-  .feature-inner{
-    justify-content:center;
-  }
-
-  .logo{
-    font-size:20px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Zaika Junction | Delicious Food Delivered</title>
+
+  <meta name="description"
+        content="Zaika Junction - Pizza, Burgers, Chow Mein, Momos and more. Order your favourite food.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0f0f10;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* ---------------- HEADER ---------------- */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 15, 16, 0.96);
+      border-bottom: 1px solid #292929;
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 72px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      color: #ffb000;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #ffffff;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: #eeeeee;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #ffb000;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .header-btn {
+      border: 1px solid #3a3a3a;
+      background: #1b1b1c;
+      color: white;
+      padding: 9px 13px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .header-btn:hover {
+      border-color: #ffb000;
+    }
+
+    .cart-button {
+      position: relative;
+      background: #ffb000;
+      color: #111;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 900;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: #ff3b30;
+      color: white;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      min-height: 500px;
+      padding: 70px 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #251e0c;
+      border: 1px solid #5e4a12;
+      color: #ffbf27;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #ffb000;
+    }
+
+    .hero p {
+      color: #bdbdbd;
+      max-width: 600px;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      background: #ffb000;
+      color: #111;
+      border: none;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 900;
+    }
+
+    .primary-btn:hover {
+      background: #ffc333;
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid #444;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    .secondary-btn:hover {
+      border-color: #ffb000;
+      color: #ffb000;
+    }
+
+    .hero-food {
+      min-height: 330px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 30% 30%, #493400 0, transparent 30%),
+        radial-gradient(circle at 70% 70%, #342600 0, transparent 35%),
+        #191919;
+      border: 1px solid #343434;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .food-circle {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: #222;
+      border: 8px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 115px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.55);
+    }
+
+    .floating-card {
+      position: absolute;
+      background: #202020;
+      border: 1px solid #3d3d3d;
+      padding: 12px 15px;
+      border-radius: 14px;
+      font-weight: 800;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    }
+
+    .floating-one {
+      top: 25px;
+      left: 20px;
+    }
+
+    .floating-two {
+      right: 20px;
+      bottom: 25px;
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #999;
+      margin-bottom: 30px;
+    }
+
+    /* ---------------- CATEGORIES ---------------- */
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .category-btn {
+      background: #1c1c1d;
+      color: #ddd;
+      border: 1px solid #353535;
+      padding: 10px 17px;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    .category-btn.active,
+    .category-btn:hover {
+      background: #ffb000;
+      color: #111;
+      border-color: #ffb000;
+    }
+
+    /* ---------------- MENU ---------------- */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .food-card {
+      background: #181819;
+      border: 1px solid #2d2d2d;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+
+    .food-card:hover {
+      transform: translateY(-4px);
+      border-color: #575757;
+    }
+
+    .food-image {
+      height: 175px;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+
+    .food-content {
+      padding: 16px;
+    }
+
+    .food-category {
+      color: #ffb000;
+      text-transform: uppercase;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .food-name {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 5px 0;
+    }
+
+    .food-description {
+      color: #999;
+      font-size: 13px;
+      min-height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .price {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .add-btn {
+      border: none;
+      background: #ffb000;
+      color: #111;
+      padding: 9px 13px;
+      border-radius: 9px;
+      font-weight: 900;
+    }
+
+    .add-btn:hover {
+      background: #ffc333;
+    }
+
+    /* ---------------- FEATURES ---------------- */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: #181819;
+      border: 1px solid #2d2d2d;
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      margin-bottom: 5px;
+    }
+
+    .feature p {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* ---------------- CART DRAWER ---------------- */
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1500;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: min(430px, 94vw);
+      height: 100vh;
+      background: #141414;
+      border-left: 1px solid #333;
+      z-index: 1600;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 20px;
+      border-bottom: 1px solid #303030;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid #444;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      font-size: 20px;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px;
+    }
+
+    .cart-item {
+      background: #1d1d1e;
+      border: 1px solid #303030;
+      border-radius: 13px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .cart-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cart-item-name {
+      font-weight: 900;
+    }
+
+    .cart-item-price {
+      color: #ffb000;
+      font-weight: 900;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .qty-btn {
+      width: 29px;
+      height: 29px;
+      border: 1px solid #444;
+      background: #252525;
+      color: white;
+      border-radius: 7px;
+    }
+
+    .remove-btn {
+      margin-left: auto;
+      border: none;
+      background: transparent;
+      color: #ff6259;
+      font-size: 12px;
+    }
+
+    .cart-summary {
+      padding: 18px;
+      border-top: 1px solid #303030;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: #aaa;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 900;
+      margin: 15px 0;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      background: #ffb000;
+      color: #111;
+      border-radius: 11px;
+      font-weight: 900;
+    }
+
+    .empty-cart {
+      text-align: center;
+      color: #888;
+      padding: 60px 20px;
+    }
+
+    /* ---------------- MODALS ---------------- */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.78);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(470px, 100%);
+      background: #181818;
+      border: 1px solid #383838;
+      border-radius: 20px;
+      padding: 25px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      font-size: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #ccc;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      background: #101010;
+      color: white;
+      border: 1px solid #3b3b3b;
+      border-radius: 9px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #ffb000;
+    }
+
+    .full-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      background: #ffb000;
+      color: #111;
+      font-weight: 900;
+      margin-top: 5px;
+    }
+
+    .switch-text {
+      text-align: center;
+      color: #999;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .switch-link {
+      color: #ffb000;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .message {
+      padding: 10px;
+      border-radius: 9px;
+      background: #272727;
+      color: #ddd;
+      margin-bottom: 12px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .order-summary-box {
+      background: #101010;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 18px;
+    }
+
+    .payment-option {
+      display: block;
+      border: 1px solid #3a3a3a;
+      border-radius: 12px;
+      padding: 13px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background: #111;
+    }
+
+    .payment-option:hover {
+      border-color: #ffb000;
+    }
+
+    .payment-option input {
+      margin-right: 8px;
+    }
+
+    .payment-note {
+      color: #888;
+      font-size: 12px;
+      margin-top: 5px;
+      padding-left: 23px;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    footer {
+      border-top: 1px solid #292929;
+      margin-top: 40px;
+      padding: 35px 20px;
+      text-align: center;
+      color: #888;
+    }
+
+    footer strong {
+      color: #ffb000;
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 1000px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 750px) {
+      nav {
+        display: none;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .navbar {
+        padding: 10px 12px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .header-btn {
+        padding: 8px;
+        font-size: 12px;
+      }
+
+      .cart-button {
+        padding: 9px 10px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .food-image {
+        height: 200px;
+      }
+
+      .section {
+        padding: 40px 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">🍽️ Zaika Junction</div>
+  <!-- ================= HEADER ================= -->
 
-    <nav class="links">
-      <a href="#home">होम</a>
-      <a href="#menu">मेन्यू</a>
-      <a href="#pizza">पिज़्ज़ा</a>
-      <a href="#burger">बर्गर</a>
-      <a href="#momos">मोमोज़</a>
-    </nav>
+  <header>
+    <div class="navbar">
 
-    <div class="actions">
-      <button class="action-btn" id="loginBtn">लॉगिन</button>
-      <button class="action-btn" id="cartBtn">
-        🛒 कार्ट
-        <span class="badge" id="cartBadge">0</span>
+      <div class="logo">
+        Zaika <span>Junction</span>
+      </div>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">Why Us</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button class="header-btn" id="loginButton" onclick="openLogin()">
+          Login
+        </button>
+
+        <button class="cart-button" onclick="openCart()">
+          🛒 Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ================= HERO ================= -->
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div>
+
+        <div class="hero-badge">
+          🍴 Fresh • Tasty • Delicious
+        </div>
+
+        <h1>
+          Your favourite food,
+          <span>one junction.</span>
+        </h1>
+
+        <p>
+          Welcome to Zaika Junction! Enjoy delicious pizzas,
+          burgers, chow mein, momos and more — freshly prepared
+          and made with love.
+        </p>
+
+        <div class="hero-buttons">
+          <button
+            class="primary-btn"
+            onclick="document.getElementById('menu').scrollIntoView()">
+            Explore Menu
+          </button>
+
+          <button
+            class="secondary-btn"
+            onclick="openCart()">
+            View Cart
+          </button>
+        </div>
+
+      </div>
+
+      <div class="hero-food">
+
+        <div class="floating-card floating-one">
+          ⭐ Delicious Food
+        </div>
+
+        <div class="food-circle">
+          🍕
+        </div>
+
+        <div class="floating-card floating-two">
+          🚀 Fast Ordering
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <section class="section" id="menu">
+
+      <h2 class="section-title">
+        Our Menu
+      </h2>
+
+      <p class="section-subtitle">
+        Choose your favourite food and add it to your cart.
+      </p>
+
+      <div class="categories">
+
+        <button
+          class="category-btn active"
+          onclick="filterMenu('all', this)">
+          All
+        </button>
+
+        <button
+          class="category-btn"
+          onclick="filterMenu('pizza', this)">
+          🍕 Pizza
+        </button>
+
+        <button
+          class="category-btn"
+          onclick="filterMenu('burger', this)">
+          🍔 Burger
+        </button>
+
+        <button
+          class="category-btn"
+          onclick="filterMenu('chowmein', this)">
+          🍜 Chow Mein
+        </button>
+
+        <button
+          class="category-btn"
+          onclick="filterMenu('momos', this)">
+          🥟 Momos
+        </button>
+
+      </div>
+
+      <div class="menu-grid" id="menuGrid"></div>
+
+    </section>
+
+
+    <!-- ================= WHY US ================= -->
+
+    <section class="section" id="about">
+
+      <h2 class="section-title">
+        Why Choose Zaika Junction?
+      </h2>
+
+      <p class="section-subtitle">
+        Simple food ordering with a delicious experience.
+      </p>
+
+      <div class="features">
+
+        <div class="feature">
+          <div class="feature-icon">🥘</div>
+          <h3>Fresh Food</h3>
+          <p>
+            Freshly prepared food made for every order.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <h3>Easy Ordering</h3>
+          <p>
+            Select your food, add it to your cart and checkout easily.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🔐</div>
+          <h3>Secure Account</h3>
+          <p>
+            Create an account and keep your profile connected with your orders.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= CART OVERLAY ================= -->
+
+  <div
+    class="overlay"
+    id="overlay"
+    onclick="closeCart()">
+  </div>
+
+
+  <!-- ================= CART DRAWER ================= -->
+
+  <aside
+    class="cart-drawer"
+    id="cartDrawer">
+
+    <div class="cart-header">
+
+      <h2>Your Cart</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeCart()">
+        ×
       </button>
+
     </div>
-  </div>
-</header>
 
-<section class="hero" id="home">
-  <div>
-    <h1>पिज़्ज़ा से <span>पेरी-पेरी मोमोज़</span> तक — सब यहीं।</h1>
-
-    <p>
-      गरम-गरम, ताज़ा बना और घर बैठे मंगवाइए।
-      पिज़्ज़ा, बर्गर, चाउमीन और मोमोज़ —
-      स्वाद जो बार-बार याद आए।
-    </p>
-
-    <div class="buttons">
-      <button class="primary" onclick="document.getElementById('menu').scrollIntoView()">मेन्यू देखें</button>
-      <button class="secondary" onclick="document.getElementById('pizza').scrollIntoView()">🍕 पिज़्ज़ा ऑफर</button>
+    <div
+      class="cart-items"
+      id="cartItems">
     </div>
-  </div>
 
-  <div class="food-art">
-    🍕 🍔<br>
-    🥟 🍜
-  </div>
-</section>
+    <div class="cart-summary">
 
-<section class="features">
-  <div class="feature-inner">
-    <span>🚴 <b>30 मिनट</b> डिलीवरी</span>
-    <span>🔥 <b>100% ताज़ा</b></span>
-    <span>🥬 वेज / नॉन-वेज</span>
-    <span>💳 कैश या ऑनलाइन पेमेंट</span>
-  </div>
-</section>
-
-<main class="menu" id="menu">
-
-  <div class="heading">
-    <h2>हमारा मेन्यू</h2>
-    <p>अपना पसंदीदा खाना चुनें और कार्ट में डालें।</p>
-  </div>
-
-  <div class="categories">
-    <button class="active" onclick="goTo('pizza',this)">🍕 पिज़्ज़ा</button>
-    <button onclick="goTo('burger',this)">🍔 बर्गर</button>
-    <button onclick="goTo('chowmein',this)">🍜 चाउमीन</button>
-    <button onclick="goTo('momos',this)">🥟 मोमोज़</button>
-  </div>
-
-  <section class="category" id="pizza">
-    <h3>🍕 पिज़्ज़ा</h3>
-    <p class="category-sub">साइज़ चुनें — Regular / Medium / Large</p>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>क्लासिक मार्गेरिटा</div>
-        <div class="item-desc">मोज़ेरेला चीज़ और टमाटर सॉस के साथ</div>
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span id="subtotal">₹0</span>
       </div>
-      <div class="item-right">
-        <div class="size-buttons">
-          <button class="size selected" onclick="selectSize(this,129)">Regular ₹129</button>
-          <button class="size" onclick="selectSize(this,319)">Medium ₹319</button>
-          <button class="size" onclick="selectSize(this,559)">Large ₹559</button>
+
+      <div class="summary-line">
+        <span>Delivery</span>
+        <span id="delivery">₹0</span>
+      </div>
+
+      <div class="summary-line">
+        <span>GST</span>
+        <span id="gst">₹0</span>
+      </div>
+
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="total">₹0</span>
+      </div>
+
+      <button
+        class="checkout-btn"
+        onclick="startCheckout()">
+        Proceed to Checkout
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- ================= LOGIN MODAL ================= -->
+
+  <div
+    class="modal"
+    id="loginModal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <h2 id="authTitle">
+          Login
+        </h2>
+
+        <button
+          class="close-btn"
+          onclick="closeLogin()">
+          ×
+        </button>
+
+      </div>
+
+      <div
+        class="message"
+        id="authMessage">
+      </div>
+
+      <!-- LOGIN -->
+
+      <form
+        id="loginForm"
+        onsubmit="loginUser(event)">
+
+        <div class="form-group">
+
+          <label>Email</label>
+
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter your email"
+            required>
+
         </div>
-        <button class="add" onclick="addSelected(this,'क्लासिक मार्गेरिटा')">कार्ट में डालें</button>
-      </div>
-    </div>
 
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>फार्म फ्रेश वेजी</div>
-        <div class="item-desc">शिमला मिर्च, प्याज़, टमाटर और ओलिव्स</div>
-      </div>
-      <div class="item-right">
-        <div class="size-buttons">
-          <button class="size selected" onclick="selectSize(this,149)">Regular ₹149</button>
-          <button class="size" onclick="selectSize(this,359)">Medium ₹359</button>
-          <button class="size" onclick="selectSize(this,599)">Large ₹599</button>
+        <div class="form-group">
+
+          <label>Password</label>
+
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+            required>
+
         </div>
-        <button class="add" onclick="addSelected(this,'फार्म फ्रेश वेजी')">कार्ट में डालें</button>
-      </div>
-    </div>
 
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>पनीर टिक्का ब्लास्ट</div>
-        <div class="item-desc">तंदूरी पनीर, प्याज़ और शिमला मिर्च</div>
-      </div>
-      <div class="item-right">
-        <div class="size-buttons">
-          <button class="size selected" onclick="selectSize(this,169)">Regular ₹169</button>
-          <button class="size" onclick="selectSize(this,399)">Medium ₹399</button>
-          <button class="size" onclick="selectSize(this,649)">Large ₹649</button>
-        </div>
-        <button class="add" onclick="addSelected(this,'पनीर टिक्का ब्लास्ट')">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>चिकन टिक्का फिएस्टा</div>
-        <div class="item-desc">तंदूरी चिकन टिक्का और प्याज़</div>
-      </div>
-      <div class="item-right">
-        <div class="size-buttons">
-          <button class="size selected" onclick="selectSize(this,199)">Regular ₹199</button>
-          <button class="size" onclick="selectSize(this,449)">Medium ₹449</button>
-          <button class="size" onclick="selectSize(this,719)">Large ₹719</button>
-        </div>
-        <button class="add" onclick="addSelected(this,'चिकन टिक्का फिएस्टा')">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>पेपरोनी ओवरलोड</div>
-        <div class="item-desc">डबल पेपरोनी और एक्स्ट्रा चीज़</div>
-      </div>
-      <div class="item-right">
-        <div class="size-buttons">
-          <button class="size selected" onclick="selectSize(this,219)">Regular ₹219</button>
-          <button class="size" onclick="selectSize(this,479)">Medium ₹479</button>
-          <button class="size" onclick="selectSize(this,749)">Large ₹749</button>
-        </div>
-        <button class="add" onclick="addSelected(this,'पेपरोनी ओवरलोड')">कार्ट में डालें</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="category" id="burger">
-    <h3>🍔 बर्गर</h3>
-    <p class="category-sub">स्ट्रीट-स्टाइल बर्गर, ताज़े बन के साथ</p>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>आलू टिक्की बर्गर</div>
-        <div class="item-desc">क्रिस्पी आलू टिक्की, मसाला मेयो</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹79</div>
-        <button class="add" onclick="addToCart('आलू टिक्की बर्गर',79)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>पनीर ज़िंगर</div>
-        <div class="item-desc">क्रिस्पी पनीर और पेरी-पेरी सॉस</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹109</div>
-        <button class="add" onclick="addToCart('पनीर ज़िंगर',109)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>क्रिस्पी चिकन बर्गर</div>
-        <div class="item-desc">फ्राइड चिकन पैटी और लेट्यूस</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹99</div>
-        <button class="add" onclick="addToCart('क्रिस्पी चिकन बर्गर',99)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>डबल चिकन ज़िंगर</div>
-        <div class="item-desc">डबल पैटी, चीज़ और स्पाइसी मेयो</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹149</div>
-        <button class="add" onclick="addToCart('डबल चिकन ज़िंगर',149)">कार्ट में डालें</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="category" id="chowmein">
-    <h3>🍜 चाउमीन</h3>
-    <p class="category-sub">वोक में ताज़ा बना हुआ</p>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>वेज हक्का नूडल्स</div>
-        <div class="item-desc">मिक्स सब्ज़ियों के साथ</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹120</div>
-        <button class="add" onclick="addToCart('वेज हक्का नूडल्स',120)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>शेज़वान वेज नूडल्स</div>
-        <div class="item-desc">तीखी शेज़वान सॉस में</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹135</div>
-        <button class="add" onclick="addToCart('शेज़वान वेज नूडल्स',135)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>चिकन चाउमीन</div>
-        <div class="item-desc">चिकन स्ट्रिप्स के साथ</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹150</div>
-        <button class="add" onclick="addToCart('चिकन चाउमीन',150)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>शेज़वान चिकन नूडल्स</div>
-        <div class="item-desc">स्पाइसी शेज़वान चिकन</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹165</div>
-        <button class="add" onclick="addToCart('शेज़वान चिकन नूडल्स',165)">कार्ट में डालें</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="category" id="momos">
-    <h3>🥟 मोमोज़</h3>
-    <p class="category-sub">8 पीस प्लेट, स्पाइसी चटनी के साथ</p>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>स्टीम्ड वेज मोमोज़</div>
-        <div class="item-desc">8 पीस, तीखी लाल चटनी के साथ</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹99</div>
-        <button class="add" onclick="addToCart('स्टीम्ड वेज मोमोज़',99)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg"></span>फ्राइड वेज मोमोज़</div>
-        <div class="item-desc">8 पीस, कुरकुरे तले हुए</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹109</div>
-        <button class="add" onclick="addToCart('फ्राइड वेज मोमोज़',109)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>चिकन मोमोज़</div>
-        <div class="item-desc">8 पीस, स्टीम्ड</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹129</div>
-        <button class="add" onclick="addToCart('चिकन मोमोज़',129)">कार्ट में डालें</button>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <div class="item-name"><span class="veg nonveg"></span>पेरी-पेरी चिकन मोमोज़</div>
-        <div class="item-desc">8 पीस, पेरी-पेरी मसाले में टॉस्ड</div>
-      </div>
-      <div class="item-right">
-        <div class="price">₹139</div>
-        <button class="add" onclick="addToCart('पेरी-पेरी चिकन मोमोज़',139)">कार्ट में डालें</button>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  © 2026 Zaika Junction · डेमो वेबसाइट · असली पेमेंट प्रोसेस नहीं करता
-</footer>
-
-<!-- CART -->
-
-<div class="overlay" id="overlay"></div>
-
-<aside class="cart" id="cart">
-  <div class="cart-head">
-    <h2>आपका कार्ट</h2>
-    <button class="close" id="closeCart">×</button>
-  </div>
-
-  <div class="cart-body" id="cartBody">
-    <div class="empty">कार्ट खाली है — मेन्यू से कुछ स्वादिष्ट चुनें 😋</div>
-  </div>
-
-  <div class="cart-foot" id="cartFoot">
-    <div class="bill">
-      <span>सबटोटल</span>
-      <span id="subtotal">₹0</span>
-    </div>
-
-    <div class="bill">
-      <span>डिलीवरी शुल्क</span>
-      <span id="delivery">₹0</span>
-    </div>
-
-    <div class="bill">
-      <span>GST (5%)</span>
-      <span id="gst">₹0</span>
-    </div>
-
-    <div class="bill total">
-      <span>कुल</span>
-      <span id="total">₹0</span>
+        <button
+          class="full-btn"
+          type="submit">
+          Log
