@@ -1,1083 +1,2457 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Zaika Junction | Delicious Food Delivered</title>
-
-  <meta name="description"
-        content="Zaika Junction - Pizza, Burgers, Chow Mein, Momos and more. Order your favourite food.">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #0f0f10;
-      color: #ffffff;
-      line-height: 1.5;
-    }
-
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    /* ---------------- HEADER ---------------- */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(15, 15, 16, 0.96);
-      border-bottom: 1px solid #292929;
-      backdrop-filter: blur(10px);
-    }
-
-    .navbar {
-      max-width: 1200px;
-      margin: auto;
-      min-height: 72px;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 900;
-      color: #ffb000;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      color: #ffffff;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-    }
-
-    nav a {
-      color: #eeeeee;
-      text-decoration: none;
-      font-size: 15px;
-    }
-
-    nav a:hover {
-      color: #ffb000;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .header-btn {
-      border: 1px solid #3a3a3a;
-      background: #1b1b1c;
-      color: white;
-      padding: 9px 13px;
-      border-radius: 10px;
-      font-weight: 700;
-    }
-
-    .header-btn:hover {
-      border-color: #ffb000;
-    }
-
-    .cart-button {
-      position: relative;
-      background: #ffb000;
-      color: #111;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-weight: 900;
-    }
-
-    .cart-count {
-      position: absolute;
-      top: -7px;
-      right: -7px;
-      width: 21px;
-      height: 21px;
-      border-radius: 50%;
-      background: #ff3b30;
-      color: white;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ---------------- HERO ---------------- */
-
-    .hero {
-      max-width: 1200px;
-      margin: auto;
-      min-height: 500px;
-      padding: 70px 20px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: #251e0c;
-      border: 1px solid #5e4a12;
-      color: #ffbf27;
-      padding: 8px 13px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 0.98;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      color: #ffb000;
-    }
-
-    .hero p {
-      color: #bdbdbd;
-      max-width: 600px;
-      font-size: 18px;
-      margin-bottom: 28px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .primary-btn {
-      background: #ffb000;
-      color: #111;
-      border: none;
-      padding: 13px 20px;
-      border-radius: 12px;
-      font-weight: 900;
-    }
-
-    .primary-btn:hover {
-      background: #ffc333;
-    }
-
-    .secondary-btn {
-      background: transparent;
-      color: white;
-      border: 1px solid #444;
-      padding: 13px 20px;
-      border-radius: 12px;
-      font-weight: 800;
-    }
-
-    .secondary-btn:hover {
-      border-color: #ffb000;
-      color: #ffb000;
-    }
-
-    .hero-food {
-      min-height: 330px;
-      border-radius: 28px;
-      background:
-        radial-gradient(circle at 30% 30%, #493400 0, transparent 30%),
-        radial-gradient(circle at 70% 70%, #342600 0, transparent 35%),
-        #191919;
-      border: 1px solid #343434;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .food-circle {
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      background: #222;
-      border: 8px solid #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 115px;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.55);
-    }
-
-    .floating-card {
-      position: absolute;
-      background: #202020;
-      border: 1px solid #3d3d3d;
-      padding: 12px 15px;
-      border-radius: 14px;
-      font-weight: 800;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
-    }
-
-    .floating-one {
-      top: 25px;
-      left: 20px;
-    }
-
-    .floating-two {
-      right: 20px;
-      bottom: 25px;
-    }
-
-    /* ---------------- SECTIONS ---------------- */
-
-    .section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 55px 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      color: #999;
-      margin-bottom: 30px;
-    }
-
-    /* ---------------- CATEGORIES ---------------- */
-
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 35px;
-    }
-
-    .category-btn {
-      background: #1c1c1d;
-      color: #ddd;
-      border: 1px solid #353535;
-      padding: 10px 17px;
-      border-radius: 999px;
-      font-weight: 800;
-    }
-
-    .category-btn.active,
-    .category-btn:hover {
-      background: #ffb000;
-      color: #111;
-      border-color: #ffb000;
-    }
-
-    /* ---------------- MENU ---------------- */
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .food-card {
-      background: #181819;
-      border: 1px solid #2d2d2d;
-      border-radius: 18px;
-      overflow: hidden;
-      transition: 0.2s;
-    }
-
-    .food-card:hover {
-      transform: translateY(-4px);
-      border-color: #575757;
-    }
-
-    .food-image {
-      height: 175px;
-      background: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-    }
-
-    .food-content {
-      padding: 16px;
-    }
-
-    .food-category {
-      color: #ffb000;
-      text-transform: uppercase;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .food-name {
-      font-size: 18px;
-      font-weight: 900;
-      margin: 5px 0;
-    }
-
-    .food-description {
-      color: #999;
-      font-size: 13px;
-      min-height: 40px;
-      margin-bottom: 10px;
-    }
-
-    .price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .price {
-      color: #fff;
-      font-size: 18px;
-      font-weight: 900;
-    }
-
-    .add-btn {
-      border: none;
-      background: #ffb000;
-      color: #111;
-      padding: 9px 13px;
-      border-radius: 9px;
-      font-weight: 900;
-    }
-
-    .add-btn:hover {
-      background: #ffc333;
-    }
-
-    /* ---------------- FEATURES ---------------- */
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature {
-      background: #181819;
-      border: 1px solid #2d2d2d;
-      border-radius: 18px;
-      padding: 25px;
-      text-align: center;
-    }
-
-    .feature-icon {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    .feature h3 {
-      margin-bottom: 5px;
-    }
-
-    .feature p {
-      color: #999;
-      font-size: 14px;
-    }
-
-    /* ---------------- CART DRAWER ---------------- */
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 1500;
-    }
-
-    .overlay.show {
-      display: block;
-    }
-
-    .cart-drawer {
-      position: fixed;
-      top: 0;
-      right: -450px;
-      width: min(430px, 94vw);
-      height: 100vh;
-      background: #141414;
-      border-left: 1px solid #333;
-      z-index: 1600;
-      transition: 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-drawer.open {
-      right: 0;
-    }
-
-    .cart-header {
-      padding: 20px;
-      border-bottom: 1px solid #303030;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .close-btn {
-      background: transparent;
-      color: white;
-      border: 1px solid #444;
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      font-size: 20px;
-    }
-
-    .cart-items {
-      flex: 1;
-      overflow-y: auto;
-      padding: 15px;
-    }
-
-    .cart-item {
-      background: #1d1d1e;
-      border: 1px solid #303030;
-      border-radius: 13px;
-      padding: 12px;
-      margin-bottom: 10px;
-    }
-
-    .cart-item-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .cart-item-name {
-      font-weight: 900;
-    }
-
-    .cart-item-price {
-      color: #ffb000;
-      font-weight: 900;
-    }
-
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .qty-btn {
-      width: 29px;
-      height: 29px;
-      border: 1px solid #444;
-      background: #252525;
-      color: white;
-      border-radius: 7px;
-    }
-
-    .remove-btn {
-      margin-left: auto;
-      border: none;
-      background: transparent;
-      color: #ff6259;
-      font-size: 12px;
-    }
-
-    .cart-summary {
-      padding: 18px;
-      border-top: 1px solid #303030;
-    }
-
-    .summary-line {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      color: #aaa;
-    }
-
-    .summary-total {
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-      font-weight: 900;
-      margin: 15px 0;
-    }
-
-    .checkout-btn {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      background: #ffb000;
-      color: #111;
-      border-radius: 11px;
-      font-weight: 900;
-    }
-
-    .empty-cart {
-      text-align: center;
-      color: #888;
-      padding: 60px 20px;
-    }
-
-    /* ---------------- MODALS ---------------- */
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(0,0,0,0.78);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-box {
-      width: min(470px, 100%);
-      background: #181818;
-      border: 1px solid #383838;
-      border-radius: 20px;
-      padding: 25px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .modal-header h2 {
-      font-size: 24px;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      color: #ccc;
-      margin-bottom: 6px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px;
-      background: #101010;
-      color: white;
-      border: 1px solid #3b3b3b;
-      border-radius: 9px;
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      border-color: #ffb000;
-    }
-
-    .full-btn {
-      width: 100%;
-      padding: 13px;
-      border: none;
-      border-radius: 10px;
-      background: #ffb000;
-      color: #111;
-      font-weight: 900;
-      margin-top: 5px;
-    }
-
-    .switch-text {
-      text-align: center;
-      color: #999;
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    .switch-link {
-      color: #ffb000;
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    .message {
-      padding: 10px;
-      border-radius: 9px;
-      background: #272727;
-      color: #ddd;
-      margin-bottom: 12px;
-      display: none;
-      font-size: 14px;
-    }
-
-    .message.show {
-      display: block;
-    }
-
-    .order-summary-box {
-      background: #101010;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 18px;
-    }
-
-    .payment-option {
-      display: block;
-      border: 1px solid #3a3a3a;
-      border-radius: 12px;
-      padding: 13px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      background: #111;
-    }
-
-    .payment-option:hover {
-      border-color: #ffb000;
-    }
-
-    .payment-option input {
-      margin-right: 8px;
-    }
-
-    .payment-note {
-      color: #888;
-      font-size: 12px;
-      margin-top: 5px;
-      padding-left: 23px;
-    }
-
-    /* ---------------- FOOTER ---------------- */
-
-    footer {
-      border-top: 1px solid #292929;
-      margin-top: 40px;
-      padding: 35px 20px;
-      text-align: center;
-      color: #888;
-    }
-
-    footer strong {
-      color: #ffb000;
-    }
-
-    /* ---------------- RESPONSIVE ---------------- */
-
-    @media (max-width: 1000px) {
-      .menu-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 750px) {
-      nav {
-        display: none;
-      }
-
-      .menu-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 45px;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .navbar {
-        padding: 10px 12px;
-      }
-
-      .logo {
-        font-size: 20px;
-      }
-
-      .header-btn {
-        padding: 8px;
-        font-size: 12px;
-      }
-
-      .cart-button {
-        padding: 9px 10px;
-      }
-
-      .menu-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: 48px;
-      }
-
-      .food-image {
-        height: 200px;
-      }
-
-      .section {
-        padding: 40px 14px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaika Junction</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#0f0f10;
+  color:white;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#111113;
+  border-bottom:1px solid #292929;
+}
+
+.navbar{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  color:#ffb000;
+}
+
+.logo span{
+  color:white;
+}
+
+nav{
+  display:flex;
+  gap:22px;
+}
+
+nav a{
+  color:#ddd;
+  text-decoration:none;
+}
+
+nav a:hover{
+  color:#ffb000;
+}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+}
+
+.header-btn{
+  background:#1d1d1e;
+  color:white;
+  border:1px solid #3b3b3b;
+  padding:9px 13px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.cart-button{
+  position:relative;
+  border:none;
+  background:#ffb000;
+  color:#111;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:900;
+}
+
+.cart-count{
+  position:absolute;
+  top:-7px;
+  right:-7px;
+  width:21px;
+  height:21px;
+  border-radius:50%;
+  background:#ff3b30;
+  color:white;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero{
+  max-width:1200px;
+  margin:auto;
+  padding:70px 20px;
+  min-height:500px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:40px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  color:#ffbd22;
+  background:#29200b;
+  border:1px solid #5d490f;
+  padding:8px 13px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(42px,7vw,76px);
+  line-height:1;
+  margin-bottom:20px;
+}
+
+.hero h1 span{
+  color:#ffb000;
+}
+
+.hero p{
+  color:#aaa;
+  font-size:18px;
+  max-width:600px;
+  margin-bottom:25px;
+}
+
+.primary{
+  border:none;
+  background:#ffb000;
+  color:#111;
+  padding:13px 20px;
+  border-radius:11px;
+  font-weight:900;
+}
+
+.secondary{
+  border:1px solid #444;
+  background:transparent;
+  color:white;
+  padding:13px 20px;
+  border-radius:11px;
+  font-weight:800;
+  margin-left:8px;
+}
+
+.hero-food{
+  min-height:330px;
+  border-radius:28px;
+  background:#1b1b1c;
+  border:1px solid #333;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+.food-circle{
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  background:#252525;
+  border:8px solid #363636;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:110px;
+}
+
+.float-card{
+  position:absolute;
+  background:#202020;
+  border:1px solid #3d3d3d;
+  padding:11px 14px;
+  border-radius:12px;
+  font-weight:bold;
+}
+
+.float-one{
+  left:20px;
+  top:25px;
+}
+
+.float-two{
+  right:20px;
+  bottom:25px;
+}
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:55px 20px;
+}
+
+.section-title{
+  text-align:center;
+  font-size:35px;
+  margin-bottom:8px;
+}
+
+.section-subtitle{
+  text-align:center;
+  color:#888;
+  margin-bottom:30px;
+}
+
+.categories{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+
+.category-btn{
+  background:#1c1c1d;
+  color:#ddd;
+  border:1px solid #353535;
+  padding:10px 17px;
+  border-radius:30px;
+  font-weight:bold;
+}
+
+.category-btn.active,
+.category-btn:hover{
+  background:#ffb000;
+  color:#111;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.food-card{
+  background:#181819;
+  border:1px solid #2e2e2e;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.food-image{
+  height:175px;
+  background:#222;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:78px;
+}
+
+.food-content{
+  padding:16px;
+}
+
+.food-category{
+  color:#ffb000;
+  font-size:11px;
+  text-transform:uppercase;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.food-name{
+  font-size:18px;
+  font-weight:900;
+  margin:5px 0;
+}
+
+.food-description{
+  color:#999;
+  font-size:13px;
+  min-height:40px;
+  margin-bottom:10px;
+}
+
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.price{
+  font-size:18px;
+  font-weight:900;
+}
+
+.add-btn{
+  background:#ffb000;
+  color:#111;
+  border:none;
+  padding:9px 13px;
+  border-radius:9px;
+  font-weight:900;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.feature{
+  background:#181819;
+  border:1px solid #2d2d2d;
+  border-radius:18px;
+  padding:25px;
+  text-align:center;
+}
+
+.feature-icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.feature p{
+  color:#999;
+  font-size:14px;
+}
+
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:1500;
+}
+
+.overlay.show{
+  display:block;
+}
+
+.cart-drawer{
+  position:fixed;
+  right:-450px;
+  top:0;
+  width:min(430px,94vw);
+  height:100vh;
+  background:#141414;
+  z-index:1600;
+  border-left:1px solid #333;
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+}
+
+.cart-drawer.open{
+  right:0;
+}
+
+.cart-header{
+  padding:20px;
+  border-bottom:1px solid #333;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close-btn{
+  width:36px;
+  height:36px;
+  border:1px solid #444;
+  background:transparent;
+  color:white;
+  border-radius:8px;
+  font-size:20px;
+}
+
+.cart-items{
+  flex:1;
+  overflow-y:auto;
+  padding:15px;
+}
+
+.cart-item{
+  background:#1d1d1e;
+  border:1px solid #303030;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:10px;
+}
+
+.cart-item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.cart-item-name{
+  font-weight:900;
+}
+
+.cart-item-price{
+  color:#ffb000;
+  font-weight:900;
+}
+
+.quantity-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.qty-btn{
+  width:30px;
+  height:30px;
+  border:1px solid #444;
+  background:#252525;
+  color:white;
+  border-radius:7px;
+}
+
+.remove-btn{
+  margin-left:auto;
+  border:none;
+  background:none;
+  color:#ff6259;
+  font-size:12px;
+}
+
+.empty-cart{
+  text-align:center;
+  color:#888;
+  padding:60px 20px;
+}
+
+.cart-summary{
+  padding:18px;
+  border-top:1px solid #333;
+}
+
+.summary-line{
+  display:flex;
+  justify-content:space-between;
+  color:#aaa;
+  margin-bottom:8px;
+}
+
+.summary-total{
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  font-weight:900;
+  margin:15px 0;
+}
+
+.checkout-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  background:#ffb000;
+  color:#111;
+  border-radius:10px;
+  font-weight:900;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  z-index:2000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(470px,100%);
+  background:#181818;
+  border:1px solid #383838;
+  border-radius:20px;
+  padding:25px;
+  max-height:90vh;
+  overflow-y:auto;
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  color:#ccc;
+  margin-bottom:6px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.form-group input{
+  width:100%;
+  padding:12px;
+  background:#101010;
+  color:white;
+  border:1px solid #3b3b3b;
+  border-radius:9px;
+  outline:none;
+}
+
+.form-group input:focus{
+  border-color:#ffb000;
+}
+
+.full-btn{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:10px;
+  background:#ffb000;
+  color:#111;
+  font-weight:900;
+}
+
+.switch-text{
+  text-align:center;
+  color:#999;
+  margin-top:15px;
+  font-size:14px;
+}
+
+.switch-link{
+  color:#ffb000;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.message{
+  display:none;
+  background:#292929;
+  color:#ddd;
+  padding:10px;
+  border-radius:9px;
+  margin-bottom:12px;
+  font-size:14px;
+}
+
+.message.show{
+  display:block;
+}
+
+.order-summary-box{
+  background:#101010;
+  border:1px solid #333;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:18px;
+}
+
+.payment-option{
+  display:block;
+  background:#111;
+  border:1px solid #3a3a3a;
+  border-radius:12px;
+  padding:13px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+.payment-note{
+  color:#888;
+  font-size:12px;
+  margin-top:4px;
+  padding-left:23px;
+}
+
+footer{
+  border-top:1px solid #292929;
+  padding:35px 20px;
+  text-align:center;
+  color:#888;
+  margin-top:40px;
+}
+
+footer strong{
+  color:#ffb000;
+}
+
+@media(max-width:1000px){
+  .menu-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:750px){
+  nav{
+    display:none;
+  }
+
+  .menu-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:500px){
+  .navbar{
+    padding:10px 12px;
+  }
+
+  .logo{
+    font-size:20px;
+  }
+
+  .header-btn{
+    padding:8px;
+    font-size:12px;
+  }
+
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  .hero h1{
+    font-size:48px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
+<header>
+  <div class="navbar">
 
-  <header>
-    <div class="navbar">
+    <div class="logo">
+      Zaika <span>Junction</span>
+    </div>
 
-      <div class="logo">
-        Zaika <span>Junction</span>
-      </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">Why Us</a>
+    </nav>
 
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#about">Why Us</a>
-      </nav>
+    <div class="header-actions">
 
-      <div class="header-actions">
+      <button
+        class="header-btn"
+        id="loginButton"
+        onclick="openLogin()">
+        Login
+      </button>
 
-        <button class="header-btn" id="loginButton" onclick="openLogin()">
-          Login
-        </button>
-
-        <button class="cart-button" onclick="openCart()">
-          🛒 Cart
-          <span class="cart-count" id="cartCount">0</span>
-        </button>
-
-      </div>
+      <button
+        class="cart-button"
+        onclick="openCart()">
+        🛒 Cart
+        <span
+          class="cart-count"
+          id="cartCount">
+          0
+        </span>
+      </button>
 
     </div>
-  </header>
+
+  </div>
+</header>
 
 
-  <!-- ================= HERO ================= -->
+<main>
 
-  <main>
+<section class="hero" id="home">
 
-    <section class="hero" id="home">
+  <div>
 
-      <div>
+    <div class="badge">
+      🍴 Fresh • Tasty • Delicious
+    </div>
 
-        <div class="hero-badge">
-          🍴 Fresh • Tasty • Delicious
-        </div>
+    <h1>
+      Your favourite food,
+      <span>one junction.</span>
+    </h1>
 
-        <h1>
-          Your favourite food,
-          <span>one junction.</span>
-        </h1>
+    <p>
+      Welcome to Zaika Junction!
+      Enjoy delicious pizzas, burgers,
+      chow mein, momos and more.
+    </p>
 
-        <p>
-          Welcome to Zaika Junction! Enjoy delicious pizzas,
-          burgers, chow mein, momos and more — freshly prepared
-          and made with love.
-        </p>
+    <button
+      class="primary"
+      onclick="document.getElementById('menu').scrollIntoView()">
+      Explore Menu
+    </button>
 
-        <div class="hero-buttons">
-          <button
-            class="primary-btn"
-            onclick="document.getElementById('menu').scrollIntoView()">
-            Explore Menu
-          </button>
+    <button
+      class="secondary"
+      onclick="openCart()">
+      View Cart
+    </button>
 
-          <button
-            class="secondary-btn"
-            onclick="openCart()">
-            View Cart
-          </button>
-        </div>
-
-      </div>
-
-      <div class="hero-food">
-
-        <div class="floating-card floating-one">
-          ⭐ Delicious Food
-        </div>
-
-        <div class="food-circle">
-          🍕
-        </div>
-
-        <div class="floating-card floating-two">
-          🚀 Fast Ordering
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= MENU ================= -->
-
-    <section class="section" id="menu">
-
-      <h2 class="section-title">
-        Our Menu
-      </h2>
-
-      <p class="section-subtitle">
-        Choose your favourite food and add it to your cart.
-      </p>
-
-      <div class="categories">
-
-        <button
-          class="category-btn active"
-          onclick="filterMenu('all', this)">
-          All
-        </button>
-
-        <button
-          class="category-btn"
-          onclick="filterMenu('pizza', this)">
-          🍕 Pizza
-        </button>
-
-        <button
-          class="category-btn"
-          onclick="filterMenu('burger', this)">
-          🍔 Burger
-        </button>
-
-        <button
-          class="category-btn"
-          onclick="filterMenu('chowmein', this)">
-          🍜 Chow Mein
-        </button>
-
-        <button
-          class="category-btn"
-          onclick="filterMenu('momos', this)">
-          🥟 Momos
-        </button>
-
-      </div>
-
-      <div class="menu-grid" id="menuGrid"></div>
-
-    </section>
-
-
-    <!-- ================= WHY US ================= -->
-
-    <section class="section" id="about">
-
-      <h2 class="section-title">
-        Why Choose Zaika Junction?
-      </h2>
-
-      <p class="section-subtitle">
-        Simple food ordering with a delicious experience.
-      </p>
-
-      <div class="features">
-
-        <div class="feature">
-          <div class="feature-icon">🥘</div>
-          <h3>Fresh Food</h3>
-          <p>
-            Freshly prepared food made for every order.
-          </p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">⚡</div>
-          <h3>Easy Ordering</h3>
-          <p>
-            Select your food, add it to your cart and checkout easily.
-          </p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">🔐</div>
-          <h3>Secure Account</h3>
-          <p>
-            Create an account and keep your profile connected with your orders.
-          </p>
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ================= CART OVERLAY ================= -->
-
-  <div
-    class="overlay"
-    id="overlay"
-    onclick="closeCart()">
   </div>
 
+  <div class="hero-food">
 
-  <!-- ================= CART DRAWER ================= -->
+    <div class="float-card float-one">
+      ⭐ Delicious Food
+    </div>
 
-  <aside
-    class="cart-drawer"
-    id="cartDrawer">
+    <div class="food-circle">
+      🍕
+    </div>
 
-    <div class="cart-header">
+    <div class="float-card float-two">
+      ⚡ Easy Ordering
+    </div>
 
-      <h2>Your Cart</h2>
+  </div>
+
+</section>
+
+
+<section class="section" id="menu">
+
+  <h2 class="section-title">
+    Our Menu
+  </h2>
+
+  <p class="section-subtitle">
+    Choose your favourite food.
+  </p>
+
+  <div class="categories">
+
+    <button
+      class="category-btn active"
+      onclick="filterMenu('all',this)">
+      All
+    </button>
+
+    <button
+      class="category-btn"
+      onclick="filterMenu('pizza',this)">
+      🍕 Pizza
+    </button>
+
+    <button
+      class="category-btn"
+      onclick="filterMenu('burger',this)">
+      🍔 Burger
+    </button>
+
+    <button
+      class="category-btn"
+      onclick="filterMenu('chowmein',this)">
+      🍜 Chow Mein
+    </button>
+
+    <button
+      class="category-btn"
+      onclick="filterMenu('momos',this)">
+      🥟 Momos
+    </button>
+
+  </div>
+
+  <div
+    class="menu-grid"
+    id="menuGrid">
+  </div>
+
+</section>
+
+
+<section class="section" id="about">
+
+  <h2 class="section-title">
+    Why Choose Zaika Junction?
+  </h2>
+
+  <p class="section-subtitle">
+    Simple ordering with a delicious experience.
+  </p>
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="feature-icon">🥘</div>
+      <h3>Fresh Food</h3>
+      <p>
+        Freshly prepared food for every order.
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h3>Easy Ordering</h3>
+      <p>
+        Select food, add to cart and checkout.
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🔐</div>
+      <h3>Secure Account</h3>
+      <p>
+        Login and connect your profile with Supabase.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<div
+  class="overlay"
+  id="overlay"
+  onclick="closeCart()">
+</div>
+
+
+<aside
+  class="cart-drawer"
+  id="cartDrawer">
+
+  <div class="cart-header">
+
+    <h2>Your Cart</h2>
+
+    <button
+      class="close-btn"
+      onclick="closeCart()">
+      ×
+    </button>
+
+  </div>
+
+  <div
+    class="cart-items"
+    id="cartItems">
+  </div>
+
+  <div class="cart-summary">
+
+    <div class="summary-line">
+      <span>Subtotal</span>
+      <span id="subtotal">₹0</span>
+    </div>
+
+    <div class="summary-line">
+      <span>Delivery</span>
+      <span id="delivery">₹0</span>
+    </div>
+
+    <div class="summary-line">
+      <span>GST</span>
+      <span id="gst">₹0</span>
+    </div>
+
+    <div class="summary-total">
+      <span>Total</span>
+      <span id="total">₹0</span>
+    </div>
+
+    <button
+      class="checkout-btn"
+      onclick="startCheckout()">
+      Proceed to Checkout
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- LOGIN MODAL -->
+
+<div
+  class="modal"
+  id="loginModal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2 id="authTitle">
+        Login
+      </h2>
 
       <button
         class="close-btn"
-        onclick="closeCart()">
+        onclick="closeLogin()">
         ×
       </button>
 
     </div>
 
     <div
-      class="cart-items"
-      id="cartItems">
+      class="message"
+      id="authMessage">
     </div>
 
-    <div class="cart-summary">
 
-      <div class="summary-line">
-        <span>Subtotal</span>
-        <span id="subtotal">₹0</span>
+    <form
+      id="loginForm"
+      onsubmit="loginUser(event)">
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Enter your email"
+          required>
+
       </div>
 
-      <div class="summary-line">
-        <span>Delivery</span>
-        <span id="delivery">₹0</span>
-      </div>
+      <div class="form-group">
 
-      <div class="summary-line">
-        <span>GST</span>
-        <span id="gst">₹0</span>
-      </div>
+        <label>Password</label>
 
-      <div class="summary-total">
-        <span>Total</span>
-        <span id="total">₹0</span>
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Enter your password"
+          required>
+
       </div>
 
       <button
-        class="checkout-btn"
-        onclick="startCheckout()">
-        Proceed to Checkout
+        class="full-btn"
+        type="submit">
+        Login
+      </button>
+
+    </form>
+
+
+    <form
+      id="signupForm"
+      style="display:none"
+      onsubmit="signupUser(event)">
+
+      <div class="form-group">
+
+        <label>Username</label>
+
+        <input
+          type="text"
+          id="signupUsername"
+          placeholder="Choose a username"
+          minlength="3"
+          required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Phone Number</label>
+
+        <input
+          type="tel"
+          id="signupPhone"
+          placeholder="Enter phone number"
+          required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          type="email"
+          id="signupEmail"
+          placeholder="Enter your email"
+          required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input
+          type="password"
+          id="signupPassword"
+          placeholder="Create a password"
+          minlength="6"
+          required>
+
+      </div>
+
+      <button
+        class="full-btn"
+        type="submit">
+        Create Account
+      </button>
+
+    </form>
+
+
+    <div class="switch-text">
+
+      <span id="switchQuestion">
+        Don't have an account?
+      </span>
+
+      <span
+        class="switch-link"
+        id="switchLink"
+        onclick="toggleAuth()">
+        Create account
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CHECKOUT MODAL -->
+
+<div
+  class="modal"
+  id="checkoutModal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+
+      <h2>Checkout</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeCheckout()">
+        ×
       </button>
 
     </div>
 
-  </aside>
+
+    <div class="order-summary-box">
+
+      <div class="summary-line">
+        <span>Items</span>
+        <span id="checkoutItems">0</span>
+      </div>
+
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="checkoutTotal">₹0</span>
+      </div>
+
+    </div>
 
 
-  <!-- ================= LOGIN MODAL ================= -->
+    <div class="form-group">
+
+      <label>Delivery Address</label>
+
+      <input
+        type="text"
+        id="address"
+        placeholder="Enter delivery address">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>Payment Method</label>
+
+      <label class="payment-option">
+
+        <input
+          type="radio"
+          name="payment"
+          value="cod"
+          checked>
+
+        💵 Cash on Delivery
+
+      </label>
+
+
+      <label class="payment-option">
+
+        <input
+          type="radio"
+          name="payment"
+          value="demo">
+
+        🧪 Demo Payment
+
+        <div class="payment-note">
+          Demo only. No real money is charged.
+        </div>
+
+      </label>
+
+
+      <label class="payment-option">
+
+        <input
+          type="radio"
+          name="payment"
+          value="razorpay">
+
+        💳 Online Payment
+
+        <div class="payment-note">
+          Real online payment can be connected later.
+        </div>
+
+      </label>
+
+    </div>
+
+
+    <div
+      class="message"
+      id="checkoutMessage">
+    </div>
+
+    <button
+      class="full-btn"
+      onclick="placeOrder()">
+      Place Order
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- SUCCESS MODAL -->
+
+<div
+  class="modal"
+  id="successModal">
 
   <div
-    class="modal"
-    id="loginModal">
+    class="modal-box"
+    style="text-align:center">
 
-    <div class="modal-box">
+    <div style="font-size:70px">
+      🎉
+    </div>
 
-      <div class="modal-header">
+    <h2>
+      Order Placed!
+    </h2>
 
-        <h2 id="authTitle">
-          Login
-        </h2>
+    <p
+      style="color:#aaa;margin:10px 0 20px">
+      Thank you for ordering from Zaika Junction.
+    </p>
 
-        <button
-          class="close-btn"
-          onclick="closeLogin()">
-          ×
-        </button>
+    <div
+      id="orderNumber"
+      style="
+      background:#101010;
+      border:1px solid #333;
+      padding:12px;
+      border-radius:10px;
+      color:#ffb000;
+      font-weight:900;
+      margin-bottom:18px;">
+    </div>
 
-      </div>
+    <button
+      class="full-btn"
+      onclick="closeSuccess()">
+      Continue Shopping
+    </button>
 
-      <div
-        class="message"
-        id="authMessage">
-      </div>
+  </div>
 
-      <!-- LOGIN -->
+</div>
 
-      <form
-        id="loginForm"
-        onsubmit="loginUser(event)">
 
-        <div class="form-group">
+<footer>
 
-          <label>Email</label>
+  <p>
+    <strong>Zaika Junction</strong>
+  </p>
 
-          <input
-            type="email"
-            id="loginEmail"
-            placeholder="Enter your email"
-            required>
+  <p>
+    Delicious food. Easy ordering. Great taste.
+  </p>
 
-        </div>
+  <p style="margin-top:10px">
+    © <span id="year"></span> Zaika Junction
+  </p>
 
-        <div class="form-group">
+</footer>
 
-          <label>Password</label>
 
-          <input
-            type="password"
-            id="loginPassword"
-            placeholder="Enter your password"
-            required>
+<!-- SUPABASE -->
 
-        </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        <button
-          class="full-btn"
-          type="submit">
-          Log
+<script>
+
+/* =====================================================
+   SUPABASE
+   ===================================================== */
+
+const SUPABASE_URL =
+"https://vcronicirzciqvasorhl.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable__kfVa9MbiAt6QvucThUc8A_KOtC7kGn";
+
+
+const sb =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+
+/* =====================================================
+   MENU
+   ===================================================== */
+
+const menu = [
+
+{
+id:1,
+category:"pizza",
+name:"Classic Margherita",
+emoji:"🍕",
+description:"Classic cheese pizza with tomato and herbs.",
+price:149
+},
+
+{
+id:2,
+category:"pizza",
+name:"Farm Fresh Veggie",
+emoji:"🍕",
+description:"Loaded with fresh vegetables and cheese.",
+price:179
+},
+
+{
+id:3,
+category:"pizza",
+name:"Paneer Tikka Blast",
+emoji:"🍕",
+description:"Spicy paneer tikka with cheese and herbs.",
+price:199
+},
+
+{
+id:4,
+category:"pizza",
+name:"Chicken Tikka Fiesta",
+emoji:"🍕",
+description:"Juicy chicken tikka with melted cheese.",
+price:229
+},
+
+{
+id:5,
+category:"pizza",
+name:"Pepperoni Overload",
+emoji:"🍕",
+description:"Cheesy pizza loaded with pepperoni.",
+price:249
+},
+
+{
+id:6,
+category:"burger",
+name:"Aloo Tikki Burger",
+emoji:"🍔",
+description:"Crispy aloo tikki with fresh vegetables.",
+price:79
+},
+
+{
+id:7,
+category:"burger",
+name:"Paneer Zinger",
+emoji:"🍔",
+description:"Crispy paneer patty with creamy sauce.",
+price:109
+},
+
+{
+id:8,
+category:"burger",
+name:"Crispy Chicken Burger",
+emoji:"🍔",
+description:"Crispy chicken patty with fresh toppings.",
+price:99
+},
+
+{
+id:9,
+category:"burger",
+name:"Double Chicken Zinger",
+emoji:"🍔",
+description:"Two delicious crispy chicken patties.",
+price:149
+},
+
+{
+id:10,
+category:"chowmein",
+name:"Veg Hakka Noodles",
+emoji:"🍜",
+description:"Classic hakka noodles with fresh vegetables.",
+price:120
+},
+
+{
+id:11,
+category:"chowmein",
+name:"Schezwan Veg Noodles",
+emoji:"🍜",
+description:"Spicy Schezwan noodles with vegetables.",
+price:135
+},
+
+{
+id:12,
+category:"chowmein",
+name:"Chicken Chow Mein",
+emoji:"🍜",
+description:"Stir-fried noodles with juicy chicken.",
+price:150
+},
+
+{
+id:13,
+category:"chowmein",
+name:"Schezwan Chicken Noodles",
+emoji:"🍜",
+description:"Spicy noodles with chicken and Schezwan sauce.",
+price:165
+},
+
+{
+id:14,
+category:"momos",
+name:"Steamed Veg Momos",
+emoji:"🥟",
+description:"Soft steamed momos filled with vegetables.",
+price:99
+},
+
+{
+id:15,
+category:"momos",
+name:"Fried Veg Momos",
+emoji:"🥟",
+description:"Crispy fried vegetable momos.",
+price:109
+},
+
+{
+id:16,
+category:"momos",
+name:"Chicken Momos",
+emoji:"🥟",
+description:"Juicy chicken-filled momos with dip.",
+price:129
+},
+
+{
+id:17,
+category:"momos",
+name:"Peri-Peri Chicken Momos",
+emoji:"🥟",
+description:"Spicy peri-peri chicken momos.",
+price:139
+}
+
+];
+
+
+/* =====================================================
+   CART
+   ===================================================== */
+
+let cart=[];
+
+
+function renderMenu(category="all"){
+
+const grid=
+document.getElementById("menuGrid");
+
+const items=
+category==="all"
+?menu
+:menu.filter(
+item=>item.category===category
+);
+
+grid.innerHTML=
+items.map(item=>`
+
+<article class="food-card">
+
+<div class="food-image">
+${item.emoji}
+</div>
+
+<div class="food-content">
+
+<div class="food-category">
+${item.category}
+</div>
+
+<div class="food-name">
+${item.name}
+</div>
+
+<div class="food-description">
+${item.description}
+</div>
+
+<div class="price-row">
+
+<span class="price">
+₹${item.price}
+</span>
+
+<button
+class="add-btn"
+onclick="addToCart(${item.id})">
++ Add
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+`).join("");
+
+}
+
+
+function filterMenu(category,button){
+
+document
+.querySelectorAll(".category-btn")
+.forEach(btn=>
+btn.classList.remove("active")
+);
+
+button.classList.add("active");
+
+renderMenu(category);
+
+}
+
+
+function addToCart(id){
+
+const item=
+menu.find(x=>x.id===id);
+
+const existing=
+cart.find(x=>x.id===id);
+
+if(existing){
+
+existing.quantity++;
+
+}else{
+
+cart.push({
+...item,
+quantity:1
+});
+
+}
+
+updateCart();
+
+openCart();
+
+}
+
+
+function changeQuantity(id,change){
+
+const item=
+cart.find(x=>x.id===id);
+
+if(!item)return;
+
+item.quantity+=change;
+
+if(item.quantity<=0){
+
+cart=
+cart.filter(x=>x.id!==id);
+
+}
+
+updateCart();
+
+}
+
+
+function removeFromCart(id){
+
+cart=
+cart.filter(x=>x.id!==id);
+
+updateCart();
+
+}
+
+
+function getSubtotal(){
+
+return cart.reduce(
+(sum,item)=>
+sum+item.price*item.quantity,
+0
+);
+
+}
+
+
+function updateCart(){
+
+const cartItems=
+document.getElementById("cartItems");
+
+const count=
+cart.reduce(
+(sum,item)=>
+sum+item.quantity,
+0
+);
+
+document.getElementById("cartCount")
+.textContent=count;
+
+
+if(cart.length===0){
+
+cartItems.innerHTML=`
+
+<div class="empty-cart">
+
+<div style="font-size:55px">
+🛒
+</div>
+
+<p>Your cart is empty.</p>
+
+<p style="font-size:13px">
+Add something delicious!
+</p>
+
+</div>
+
+`;
+
+}else{
+
+cartItems.innerHTML=
+cart.map(item=>`
+
+<div class="cart-item">
+
+<div class="cart-item-top">
+
+<div>
+
+<div class="cart-item-name">
+${item.emoji} ${item.name}
+</div>
+
+<div style="color:#888;font-size:12px">
+₹${item.price} each
+</div>
+
+</div>
+
+<div class="cart-item-price">
+₹${item.price*item.quantity}
+</div>
+
+</div>
+
+
+<div class="quantity-controls">
+
+<button
+class="qty-btn"
+onclick="changeQuantity(${item.id},-1)">
+−
+</button>
+
+<strong>
+${item.quantity}
+</strong>
+
+<button
+class="qty-btn"
+onclick="changeQuantity(${item.id},1)">
++
+</button>
+
+<button
+class="remove-btn"
+onclick="removeFromCart(${item.id})">
+Remove
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+const subtotal=
+getSubtotal();
+
+const delivery=
+subtotal>0?40:0;
+
+const gst=
+Math.round(subtotal*.05);
+
+const total=
+subtotal+delivery+gst;
+
+
+document.getElementById("subtotal")
+.textContent="₹"+subtotal;
+
+document.getElementById("delivery")
+.textContent="₹"+delivery;
+
+document.getElementById("gst")
+.textContent="₹"+gst;
+
+document.getElementById("total")
+.textContent="₹"+total;
+
+}
+
+
+/* =====================================================
+   CART
+   ===================================================== */
+
+function openCart(){
+
+document
+.getElementById("cartDrawer")
+.classList.add("open");
+
+document
+.getElementById("overlay")
+.classList.add("show");
+
+}
+
+
+function closeCart(){
+
+document
+.getElementById("cartDrawer")
+.classList.remove("open");
+
+document
+.getElementById("overlay")
+.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOGIN
+   ===================================================== */
+
+function openLogin(){
+
+document
+.getElementById("loginModal")
+.classList.add("show");
+
+clearAuthMessage();
+
+}
+
+
+function closeLogin(){
+
+document
+.getElementById("loginModal")
+.classList.remove("show");
+
+}
+
+
+function toggleAuth(){
+
+const loginForm=
+document.getElementById("loginForm");
+
+const signupForm=
+document.getElementById("signupForm");
+
+const title=
+document.getElementById("authTitle");
+
+const question=
+document.getElementById("switchQuestion");
+
+const link=
+document.getElementById("switchLink");
+
+
+if(loginForm.style.display!=="none"){
+
+loginForm.style.display="none";
+signupForm.style.display="block";
+
+title.textContent="Create Account";
+
+question.textContent=
+"Already have an account?";
+
+link.textContent="Login";
+
+}else{
+
+loginForm.style.display="block";
+signupForm.style.display="none";
+
+title.textContent="Login";
+
+question.textContent=
+"Don't have an account?";
+
+link.textContent="Create account";
+
+}
+
+clearAuthMessage();
+
+}
+
+
+function showAuthMessage(message){
+
+const box=
+document.getElementById("authMessage");
+
+box.textContent=message;
+
+box.classList.add("show");
+
+}
+
+
+function clearAuthMessage(){
+
+const box=
+document.getElementById("authMessage");
+
+box.textContent="";
+
+box.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   SIGN UP
+   ===================================================== */
+
+async function signupUser(event){
+
+event.preventDefault();
+
+clearAuthMessage();
+
+
+const username=
+document
+.getElementById("signupUsername")
+.value
+.trim();
+
+const phone=
+document
+.getElementById("signupPhone")
+.value
+.trim();
+
+const email=
+document
+.getElementById("signupEmail")
+.value
+.trim();
+
+const password=
+document
+.getElementById("signupPassword")
+.value;
+
+
+showAuthMessage(
+"Creating your account..."
+);
+
+
+try{
+
+const {
+data,
+error
+}=
+await sb.auth.signUp({
+email:email,
+password:password
+});
+
+
+if(error){
+throw error;
+}
+
+
+if(data.user){
+
+/*
+ IMPORTANT:
+
+ This saves username and phone.
+
+ Your profiles table needs:
+ id
+ username
+ phone
+
+ If phone column is not present,
+ remove the phone line below.
+*/
+
+const {
+error:profileError
+}=
+await sb
+.from("profiles")
+.upsert({
+
+id:data.user.id,
+
+username:username,
+
+phone:phone
+
+},{
+onConflict:"id"
+});
+
+
+if(profileError){
+
+console.error(profileError);
+
+showAuthMessage(
+"Account created, but profile could not be saved. Check the profiles table."
+);
+
+return;
+
+}
+
+}
+
+
+showAuthMessage(
+"Account created! Check your email if email confirmation is required."
+);
+
+
+document
+.getElementById("signupForm")
+.reset();
+
+
+}catch(error){
+
+showAuthMessage(
+error.message||
+"Could not create account."
+);
+
+}
+
+}
+
+
+/* =====================================================
+   LOGIN
+   ===================================================== */
+
+async function loginUser(event){
+
+event.preventDefault();
+
+clearAuthMessage();
+
+
+const email=
+document
+.getElementById("loginEmail")
+.value
+.trim();
+
+const password=
+document
+.getElementById("loginPassword")
+.value;
+
+
+showAuthMessage(
+"Logging in..."
+);
+
+
+try{
+
+const {
+data,
+error
+}=
+await sb.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+
+if(error){
+throw error;
+}
+
+
+await updateLoggedInUser(
+data.user
+);
+
+closeLogin();
+
+
+}catch(error){
+
+showAuthMessage(
+error.message||
+"Login failed."
+);
+
+}
+
+}
+
+
+/* =====================================================
+   USER
+   ===================================================== */
+
+async function updateLoggedInUser(user){
+
+const button=
+document.getElementById("loginButton");
+
+if(!user){
+
+button.textContent="Login";
+button.onclick=openLogin;
+
+return;
+
+}
+
+
+let username=
+user.email;
+
+
+const {
+data
+}=
+await sb
+.from("profiles")
+.select("username")
+.eq("id",user.id)
+.maybeSingle();
+
+
+if(data && data.username){
+
+username=data.username;
+
+}
+
+
+button.textContent=username;
+
+button.onclick=showAccountMenu;
+
+}
+
+
+function showAccountMenu(){
+
+const logout=
+confirm(
+"You are logged in. Do you want to logout?"
+);
+
+if(logout){
+
+logoutUser();
+
+}
+
+}
+
+
+async function logoutUser(){
+
+await sb.auth.signOut();
+
+const button=
+document.getElementById("loginButton");
+
+button.textContent="Login";
+
+button.onclick=openLogin;
+
+}
+
+
+/* =====================================================
+   CHECKOUT
+   ===================================================== */
+
+async function startCheckout(){
+
+if(cart.length===0){
+
+alert("Your cart is empty.");
+
+return;
+
+}
+
+
+const {
+data
+}=
+await sb.auth.getUser();
+
+
+if(!data.user){
+
+closeCart();
+
+openLogin();
+
+showAuthMessage(
+"Please login before placing an order."
+);
+
+return;
+
+}
+
+
+const subtotal=
+getSubtotal();
+
+const delivery=40;
+
+const gst=
+Math.round(subtotal*.05);
+
+const total=
+subtotal+delivery+gst;
+
+const items=
+cart.reduce(
+(sum,item)=>
+sum+item.quantity,
+0
+);
+
+
+document.getElementById("checkoutItems")
+.textContent=items;
+
+document.getElementById("checkoutTotal")
+.textContent="₹"+total;
+
+
+document
+.getElementById("checkoutModal")
+.classList.add("show");
+
+}
+
+
+function closeCheckout(){
+
+document
+.getElementById("checkoutModal")
+.classList.remove("show");
+
+}
+
+
+function showCheckoutMessage(message){
+
+const box=
+document.getElementById(
+"checkoutMessage"
+);
+
+box.textContent=message;
+
+box.classList.add("show");
+
+}
+
+
+/* =====================================================
+   PLACE ORDER
+   ===================================================== */
+
+async function placeOrder(){
+
+const address=
+document
+.getElementById("address")
+.value
+.trim();
+
+
+if(!address){
+
+showCheckoutMessage(
+"Please enter your delivery address."
+);
+
+return;
+
+}
+
+
+const {
+data:authData
+}=
+await sb.auth.getUser();
+
+
+if(!authData.user){
+
+closeCheckout();
+
+openLogin();
+
+showAuthMessage(
+"Please login first."
+);
+
+return;
+
+}
+
+
+const payment=
+document.querySelector(
+'input[name="payment"]:checked'
+).value;
+
+
+const subtotal=
+getSubtotal();
+
+const delivery=40;
+
+const gst=
+Math.round(subtotal*.05);
+
+const total=
+subtotal+delivery+gst;
+
+
+showCheckoutMessage(
+"Saving your order..."
+);
+
+
+try{
+
+/*
+ The orders table should contain:
+
+ id
+ user_id
+ total_amount
+ payment_method
+ status
+ delivery_address
+ created_at
+*/
+
+const {
+data,
+error
+}=
+await sb
+.from("orders")
+.insert({
+
+user_id:
+authData.user.id,
+
+total_amount:
+total,
+
+payment_method:
+payment,
+
+status:
+"pending",
+
+delivery_address:
+address
+
+})
+.select()
+.single();
+
+
+if(error){
+
+throw error;
+
+}
+
+
+const orderId=
+data && data.id
+?data.id
+:"ZJ"+Date.now();
+
+
+closeCheckout();
+
+closeCart();
+
+cart=[];
+
+updateCart();
+
+
+document.getElementById(
+"orderNumber"
+).textContent=
+"Order ID: "+orderId;
+
+
+document
+.getElementById("successModal")
+.classList.add("show");
+
+
+document.getElementById(
+"address"
+).value="";
+
+
+}catch(error){
+
+console.error(error);
+
+showCheckoutMessage(
+"Order could not be saved. Make sure the orders table and RLS policy are ready in Supabase."
+);
+
+}
+
+}
+
+
+/* =====================================================
+   SUCCESS
+   ===================================================== */
+
+function closeSuccess(){
+
+document
+.getElementById("successModal")
+.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   START WEBSITE
+   ===================================================== */
+
+renderMenu();
+
+updateCart();
+
+document.getElementById("year")
+.textContent=
+new Date().getFullYear();
+
+
+/* =====================================================
+   RESTORE LOGIN
+   ===================================================== */
+
+async function restoreSession(){
+
+try{
+
+const {
+data
+}=
+await sb.auth.getUser();
+
+
+if(data && data.user){
+
+await updateLoggedInUser(
+data.user
+);
+
+}
+
+}catch(error){
+
+console.log(
+"No active session."
+);
+
+}
+
+}
+
+
+restoreSession();
+
+
+/* =====================================================
+   AUTH LISTENER
+   ===================================================== */
+
+sb.auth.onAuthStateChange(
+async(event,session)=>{
+
+if(
+session &&
+session.user
+){
+
+await updateLoggedInUser(
+session.user
+);
+
+}else{
+
+const button=
+document.getElementById(
+"loginButton"
+);
+
+button.textContent="Login";
+
+button.onclick=openLogin;
+
+}
+
+}
+);
+
+</script>
+
+</body>
+    </html>
